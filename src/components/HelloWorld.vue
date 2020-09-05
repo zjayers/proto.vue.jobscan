@@ -1,17 +1,15 @@
 <template>
-    <div>
-        Hello World
-    </div>
+  <div>Hello World</div>
 </template>
 
 <script>
 export default {
-    name: 'HelloWorld',
-}
+  name: "HelloWorld",
+};
 </script>
 
 <style scoped>
 p {
-    font-size: 20px;
+  font-size: 20px;
 }
 </style>
