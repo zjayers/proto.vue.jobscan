@@ -1,52 +1,51 @@
 <template>
-  <div>
-    <div class="jscan-container fixed-left top-most">
-      <hello-world></hello-world>
+    <div>
+        <button-dock/>
+        <side-bar :id="SIDEBAR_JOB_BOARD" title="Job Board"/>
+        <side-bar :id="SIDEBAR_GENERATORS" title="Generators"/>
+        <side-bar :id="SIDEBAR_METRICS" title="Metrics"/>
+        <side-bar :id="SIDEBAR_PERSONAL" title="Personal"/>
     </div>
-  </div>
 </template>
 
 <script>
-import HelloWorld from "../components/HelloWorld";
+
+
+import ButtonDock from "../components/ButtonDock/JxButtonDock";
+import SideBar from "../components/SideBars/SideBar";
+import {SIDEBAR_GENERATORS, SIDEBAR_JOB_BOARD, SIDEBAR_METRICS, SIDEBAR_PERSONAL} from "../constants/constants";
+
 export default {
-  components: {
-    HelloWorld,
-  },
+    components: {SideBar, ButtonDock},
+    data: () => ({
+        SIDEBAR_JOB_BOARD,
+        SIDEBAR_GENERATORS,
+        SIDEBAR_METRICS,
+        SIDEBAR_PERSONAL
+    })
 };
 </script>
 
 <style lang="scss" scoped>
-.jscan-container {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  bottom: 0;
-  height: 100vh;
-  width: 180px;
-  position: fixed;
-  background: dodgerblue;
-}
 
-.fixed-left {
-  left: 0;
-}
-
-.top-most {
-  z-index: 99999;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
+.j-container {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
     color: #2c3e50;
+    top: 50%;
+    height: 300px;
+    width: 300px;
+    position: fixed;
+    transform: translateY(-50%);
+}
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+.j-fixed-left {
+    left: 0;
+}
+
+.j-top-most {
+    z-index: 99999;
 }
 </style>
