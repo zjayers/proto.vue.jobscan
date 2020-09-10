@@ -12,9 +12,10 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .jx-dock-btn {
     background: white;
+    width: 120px;
 }
 
 p {

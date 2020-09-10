@@ -10,10 +10,10 @@
         <b-collapse id="jx-bottom-accordion" accordion="jx-accordion" role="toolbar" visible>
             <jx-job-save/>
             <b-button-group>
-                <jx-button :sidebar-id="SIDEBAR_JOB_BOARD" icon="briefcase" title="Job Board"/>
-                <jx-button :sidebar-id="SIDEBAR_GENERATORS" icon="newspaper" title="Generators"/>
-                <jx-button :sidebar-id="SIDEBAR_METRICS" icon="clipboard-data" title="Metrics"/>
                 <jx-button :sidebar-id="SIDEBAR_PERSONAL" icon="person-badge" title="Personal"/>
+                <jx-button :sidebar-id="SIDEBAR_JOB_BOARD" icon="briefcase" title="Job Board"/>
+                <jx-button :sidebar-id="SIDEBAR_TEMPLATES" icon="newspaper" title="Templates"/>
+                <jx-button :sidebar-id="SIDEBAR_METRICS" icon="clipboard-data" title="Metrics"/>
             </b-button-group>
         </b-collapse>
     </div>
@@ -21,7 +21,7 @@
 
 <script>
 import JxButton from "./JxButton";
-import {SIDEBAR_GENERATORS, SIDEBAR_JOB_BOARD, SIDEBAR_METRICS, SIDEBAR_PERSONAL} from "../../constants/constants";
+import {SIDEBAR_JOB_BOARD, SIDEBAR_METRICS, SIDEBAR_PERSONAL, SIDEBAR_TEMPLATES} from "../../constants/constants";
 import JxJobSave from "./JxJobSave";
 
 export default {
@@ -30,7 +30,7 @@ export default {
     data: () => ({
         showAccordionIcon: true,
         SIDEBAR_JOB_BOARD,
-        SIDEBAR_GENERATORS,
+        SIDEBAR_TEMPLATES,
         SIDEBAR_METRICS,
         SIDEBAR_PERSONAL
     }),
@@ -58,6 +58,7 @@ export default {
 </script>
 
 <style scoped>
+
 .jx-btn-container {
     position: fixed;
     bottom: 0;

@@ -3,8 +3,8 @@
                :title="title"
                backdrop
                class="jx-sidebar"
-               no-header
-               shadow="lg">
+               shadow="lg"
+               width="350px">
         <div class="px-3 py-2">
             <slot></slot>
         </div>
@@ -18,8 +18,9 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .jx-sidebar {
     z-index: 99999;
+    width: 300px;
 }
 </style>

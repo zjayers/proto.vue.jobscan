@@ -11,8 +11,6 @@ module.exports = {
       componentOptions: {
         contentScripts: {
           entries: {
-            "document-start": ["src/scripts/document-start.js"],
-            "document-end": ["src/scripts/document-end.js"],
             main: ["src/overlay/main.js"],
           },
         },
