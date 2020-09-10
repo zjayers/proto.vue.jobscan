@@ -1,8 +1,8 @@
 <template>
-    <div>
+    <div class="container">
         <button-dock/>
         <side-bar :id="SIDEBAR_JOB_BOARD" title="Job Board"></side-bar>
-        <side-bar :id="SIDEBAR_GENERATORS" title="Generators"></side-bar>
+        <side-bar :id="SIDEBAR_TEMPLATES" title="Templates"></side-bar>
         <side-bar :id="SIDEBAR_METRICS" title="Metrics"></side-bar>
         <side-bar :id="SIDEBAR_PERSONAL" title="Personal">
             <Personal/>
@@ -20,7 +20,7 @@ export default {
     components: {Personal, SideBar, ButtonDock},
     data: () => ({
         SIDEBAR_JOB_BOARD,
-        SIDEBAR_GENERATORS: SIDEBAR_TEMPLATES,
+        SIDEBAR_TEMPLATES,
         SIDEBAR_METRICS,
         SIDEBAR_PERSONAL
     })
