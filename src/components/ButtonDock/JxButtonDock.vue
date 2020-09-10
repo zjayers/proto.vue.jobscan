@@ -1,74 +1,130 @@
 <template>
-    <div class="jx-btn-container">
-        <b-card-header class="p-1 jx-transition" header-tag="header" role="tab">
-            <b-button v-b-toggle.jx-bottom-accordion
-                      v-b-tooltip.hover.top="(showAccordionIcon ? 'Show' : 'Hide') + ' Toolbar'" block
-                      variant="info">
-                <b-icon-briefcase v-show="showAccordionIcon"/>
-            </b-button>
-        </b-card-header>
-        <b-collapse id="jx-bottom-accordion" accordion="jx-accordion" role="toolbar" visible>
-            <jx-job-save/>
-            <b-button-group>
-                <jx-button :sidebar-id="SIDEBAR_PERSONAL" icon="person-badge" title="Personal"/>
-                <jx-button :sidebar-id="SIDEBAR_JOB_BOARD" icon="briefcase" title="Job Board"/>
-                <jx-button :sidebar-id="SIDEBAR_TEMPLATES" icon="newspaper" title="Templates"/>
-                <jx-button :sidebar-id="SIDEBAR_METRICS" icon="clipboard-data" title="Metrics"/>
-            </b-button-group>
-        </b-collapse>
+    <div class="jx-button-dock">
+
+        <div ref="accordionButton" class="jx-collapse-button" @click="toggleButtonContainerVisibility">
+            <icon-work v-if="showAccordionIcon"/>
+        </div>
+
+        <div>
+            <transition name="collapse">
+                <div v-if="showButtonGroup" class="jx-button-container">
+                    <jx-dock-button :sidebar-id="SIDEBAR_PERSONAL" icon="person-badge" left="true" title="Personal">
+                        <icon-personal/>
+                    </jx-dock-button>
+                    <jx-dock-button :sidebar-id="SIDEBAR_JOB_BOARD" icon="briefcase" title="Job Board">
+                        <icon-job-board/>
+                    </jx-dock-button>
+                    <jx-dock-button :sidebar-id="SIDEBAR_TEMPLATES" icon="newspaper" title="Templates">
+                        <icon-templates/>
+                    </jx-dock-button>
+                    <jx-dock-button :sidebar-id="SIDEBAR_METRICS" icon="clipboard-data" right="true" title="Metrics">
+                        <icon-metrics/>
+                    </jx-dock-button>
+                </div>
+            </transition>
+        </div>
     </div>
 </template>
 
 <script>
-import JxButton from "./JxButton";
-import {SIDEBAR_JOB_BOARD, SIDEBAR_METRICS, SIDEBAR_PERSONAL, SIDEBAR_TEMPLATES} from "../../constants/constants";
-import JxJobSave from "./JxJobSave";
+import JxDockButton from "../JxDockButton";
+import {SIDEBAR_JOB_BOARD, SIDEBAR_METRICS, SIDEBAR_PERSONAL, SIDEBAR_TEMPLATES} from "../../../constants/constants";
+import IconPersonal from "../../Icons/IconPersonal";
+import IconJobBoard from "../../Icons/IconJobBoard";
+import IconTemplates from "../../Icons/IconTemplates";
+import IconMetrics from "../../Icons/IconMetrics";
+import IconWork from "../../Icons/IconWork";
 
 export default {
     name: 'ButtonDock',
-    components: {JxJobSave, JxButton},
+    components: {IconWork, IconMetrics, IconTemplates, IconJobBoard, IconPersonal, JxDockButton},
     data: () => ({
-        showAccordionIcon: true,
+        showButtonGroup: true,
+        showAccordionIcon: false,
         SIDEBAR_JOB_BOARD,
         SIDEBAR_TEMPLATES,
         SIDEBAR_METRICS,
         SIDEBAR_PERSONAL
     }),
-    mounted() {
-        // Check For Button Bar Collapse State
-        this.$root.$on('bv::collapse::state', (id) => {
-
-            // If the collapse state updates is that of the accordion bar
-            if (id === 'jx-bottom-accordion') {
-
-                // And if the accordion icon is showing - hide the accordion icon
-                if (this.showAccordionIcon) {
-                    this.showAccordionIcon = !this.showAccordionIcon;
-                } else {
-                    // Wait for 350 ms then show the accordion icon
-                    const v = this;
-                    setTimeout(() => {
-                        v.showAccordionIcon = !v.showAccordionIcon;
-                    }, 350)
-                }
-            }
-        })
+    methods: {
+        /**
+         * Toggle the button container visibility
+         * Toggle the button container accordion icon
+         */
+        toggleButtonContainerVisibility() {
+            // Hide and show the button group container
+            this.showButtonGroup = !this.showButtonGroup;
+            this.showAccordionIcon = !this.showAccordionIcon;
+            this.$refs.accordionButton.classList.toggle('jx-collapsed');
+        }
     }
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
-.jx-btn-container {
+@import '../../../scss/theme';
+
+.jx-button-dock {
     position: fixed;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
-.jx-transition {
-    transition: all 1s ease-in-out;
+.jx-collapse-button {
+    width: 100%;
+    height: 14px;
+    background-color: $info;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    color: $white;
+    cursor: pointer;
+    margin: auto auto 8px;
+    transition: all 0.5s ease;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, .2);
+
+    &:hover {
+        filter: brightness(1.25);
+        transform: translateY(-2px);
+    }
+
+    &:active {
+        filter: brightness(.8);
+        transform: translateY(2px);
+
+    }
+}
+
+.jx-button-container {
+    max-height: 200px;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, .2);
+}
+
+.jx-collapsed {
+    height: 36px;
+    width: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & svg {
+        fill: $white;
+        height: 30px;
+    }
+}
+
+
+.collapse-enter-active, .collapse-leave-active {
+    transition: max-height .5s;
+}
+
+.collapse-enter, .collapse-leave-to {
+    max-height: 0;
 }
 
 </style>
