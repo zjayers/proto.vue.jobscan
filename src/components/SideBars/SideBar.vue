@@ -1,18 +1,102 @@
 <template>
-    <div :id="id" :title="title">
-        <div>
-            <slot></slot>
+    <transition name="fade">
+        <div v-show="getSideBarVisible" class="jx-sidebar-container">
+            <transition name="collapse">
+                <div v-if="getSideBarVisible" class="jx-sidebar-content">
+                    <component :is="sideBarContent"></component>
+                </div>
+            </transition>
+            <div class="jx-sidebar-overlay" @click="toggleSideBarVisible"></div>
         </div>
-    </div>
+    </transition>
 </template>
 
 <script>
+import {mapActions, mapGetters} from "vuex";
+import {SIDEBAR_JOB_BOARD, SIDEBAR_METRICS, SIDEBAR_PERSONAL, SIDEBAR_TEMPLATES} from "../../constants/constants";
+import Personal from "./Personal/Personal";
+import Metrics from "./Metrics/Metrics";
+import JobBoard from "./JobBoard/JobBoard";
+import Templates from "./Templates/Templates";
+
 export default {
     name: "SideBar",
-    props: ['id', 'title']
+    components: {Personal, Metrics, JobBoard, Templates},
+    data: () => ({
+        SIDEBAR_JOB_BOARD,
+        SIDEBAR_METRICS,
+        SIDEBAR_PERSONAL,
+        SIDEBAR_TEMPLATES
+    }),
+    props: ['id', 'title'],
+    computed: {
+        ...mapGetters(['getSideBarVisible', 'getSideBarId']),
+        sideBarContent() {
+            switch (this.getSideBarId) {
+                case SIDEBAR_PERSONAL:
+                    return 'Personal';
+                case SIDEBAR_JOB_BOARD:
+                    return 'JobBoard';
+                case SIDEBAR_TEMPLATES:
+                    return 'Templates';
+                case SIDEBAR_METRICS:
+                    return 'Metrics'
+                default:
+                    return '';
+            }
+        }
+    }, methods: {
+        ...mapActions(['toggleSideBarVisible']),
+    }
 }
 </script>
 
 <style lang="scss" scoped>
 
+@import '../../scss/theme';
+
+.jx-sidebar-container {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    margin: 0;
+    left: 0;
+    top: 0;
+    display: flex;
+    pointer-events: all;
+    z-index: 1001 !important;
+}
+
+.jx-sidebar-content {
+    width: 350px;
+    height: 100vh;
+    background: $gray-100;
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, .4);
+    padding: 10px;
+    overflow: hidden;
+    z-index: 1001 !important;
+}
+
+.jx-sidebar-overlay {
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, .4);
+    z-index: 1001 !important;
+}
+
+.collapse-enter-active, .collapse-leave-active {
+    transition: width .5s;
+}
+
+.collapse-enter, .collapse-leave-to {
+    width: 0;
+}
+
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .2s;
+}
+
+.fade-enter, .fade-leave-to {
+    opacity: 0;
+}
 </style>

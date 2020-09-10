@@ -1,127 +1,61 @@
 // -------- State -------- //
 const state = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  phoneNumber: "",
-  githubUsername: "",
-  website: "",
-  currentJobTitle: "",
-  yearsOfExperience: "",
-  personalSummary: "",
-  platforms: ["Windows", "Mac", "Linux", "iOS", "Android"],
-  skills: [],
+    firstName: "",
+    lastName: "",
+    email: "",
+    phoneNumber: "",
+    githubUsername: "",
+    website: "",
+    currentJobTitle: "",
+    yearsOfExperience: "",
+    personalSummary: "",
+    platforms: ["Windows", "Mac", "Linux", "iOS", "Android"],
+    skills: [],
 };
 
 // -------- Getters -------- //
 const getters = {
-  getFirstName: (state) => {
-    return state.firstName;
-  },
-  getLastName: (state) => {
-    return state.lastName;
-  },
-  getEmail: (state) => {
-    return state.email;
-  },
-  getPhoneNumber: (state) => {
-    return state.phoneNumber;
-  },
-  getGithubUsername: (state) => {
-    return state.githubUsername;
-  },
-  getWebsite: (state) => {
-    return state.website;
-  },
-  getCurrentJobTitle: (state) => {
-    return state.currentJobTitle;
-  },
-  getYearsOfExperience: (state) => {
-    return state.yearsOfExperience;
-  },
-  getPersonalSummary: (state) => {
-    return state.personalSummary;
-  },
-  getPlatforms: (state) => {
-    return state.platforms;
-  },
-  getSkills: (state) => {
-    return state.skills;
-  },
+    getFirstName: (state) => state.firstName,
+    getLastName: (state) => state.lastName,
+    getEmail: (state) => state.email,
+    getPhoneNumber: (state) => state.phoneNumber,
+    getGithubUsername: (state) => state.githubUsername,
+    getWebsite: (state) => state.website,
+    getCurrentJobTitle: (state) => state.currentJobTitle,
+    getYearsOfExperience: (state) => state.yearsOfExperience,
+    getPersonalSummary: (state) => state.personalSummary,
+    getPlatforms: (state) => state.platforms,
+    getSkills: (state) => state.skills,
 };
 
 // -------- Mutations -------- //
 const mutations = {
-  mutateFirstName(state, payload) {
-    state.firstName = payload;
-  },
-  mutateLastName(state, payload) {
-    state.lastName = payload;
-  },
-  mutateEmail(state, payload) {
-    state.email = payload;
-  },
-  mutatePhoneNumber(state, payload) {
-    state.phoneNumber = payload;
-  },
-  mutateGithubUsername(state, payload) {
-    state.githubUsername = payload;
-  },
-  mutateWebsite(state, payload) {
-    state.website = payload;
-  },
-  mutateCurrentJobTitle(state, payload) {
-    state.currentJobTitle = payload;
-  },
-  mutateYearsOfExperience(state, payload) {
-    state.yearsOfExperience = payload;
-  },
-  mutatePersonalSummary(state, payload) {
-    state.personalSummary = payload;
-  },
-  mutatePlatforms(state, payload) {
-    state.platforms = payload;
-  },
-  mutateSkills(state, payload) {
-    state.skills = payload;
-  },
+    setFirstName: (state, payload) => (state.firstName = payload),
+    setLastName: (state, payload) => (state.lastName = payload),
+    setEmail: (state, payload) => (state.email = payload),
+    setPhoneNumber: (state, payload) => (state.phoneNumber = payload),
+    setGithubUsername: (state, payload) => (state.githubUsername = payload),
+    setWebsite: (state, payload) => (state.website = payload),
+    setCurrentJobTitle: (state, payload) => (state.currentJobTitle = payload),
+    setYearsOfExperience: (state, payload) => (state.yearsOfExperience = payload),
+    setPersonalSummary: (state, payload) => (state.personalSummary = payload),
+    setPlatforms: (state, payload) => (state.platforms = payload),
+    setSkills: (state, payload) => (state.skills = payload),
 };
 
 // -------- Actions -------- //
 const actions = {
-  updateFirstName({ commit }, payload) {
-    commit("mutateFirstName", payload);
-  },
-  updateLastName({ commit }, payload) {
-    commit("mutateLastName", payload);
-  },
-  updateEmail({ commit }, payload) {
-    commit("mutateEmail", payload);
-  },
-  updatePhoneNumber({ commit }, payload) {
-    commit("mutatePhoneNumber", payload);
-  },
-  updateGithubUsername({ commit }, payload) {
-    commit("mutateGitProfile", payload);
-  },
-  updateWebsite({ commit }, payload) {
-    commit("mutateWebsite", payload);
-  },
-  updateCurrentJobTitle({ commit }, payload) {
-    commit("mutateCurrentJobTitle", payload);
-  },
-  updateYearsOfExperience({ commit }, payload) {
-    commit("mutateYearsOfExperience", payload);
-  },
-  updatePersonalSummary({ commit }, payload) {
-    commit("mutatePersonalSummary", payload);
-  },
-  updatePlatforms({ commit }, payload) {
-    commit("mutatePlatforms", payload);
-  },
-  updateSkills({ commit }, payload) {
-    commit("mutateSkills", payload);
-  },
+    updateFirstName: ({ commit }, payload) => commit("setFirstName", payload),
+    updateLastName: ({ commit }, payload) => commit("setLastName", payload),
+    updateEmail: ({ commit }, payload) => commit("setEmail", payload),
+    updatePhoneNumber: ({ commit }, payload) => commit("setPhoneNumber", payload),
+    updateGithubUsername: ({ commit }, payload) => commit("setGitProfile", payload),
+    updateWebsite: ({ commit }, payload) => commit("setWebsite", payload),
+    updateCurrentJobTitle: ({ commit }, payload) => commit("setCurrentJobTitle", payload),
+    updateYearsOfExperience: ({ commit }, payload) => commit("setYearsOfExperience", payload),
+    updatePersonalSummary: ({ commit }, payload) => commit("setPersonalSummary", payload),
+    updatePlatforms: ({ commit }, payload) => commit("setPlatforms", payload),
+    updateSkills: ({ commit }, payload) => commit("setSkills", payload),
 };
 
 export default { state, getters, mutations, actions };

@@ -2,13 +2,13 @@
     <div class="jx-button-dock">
 
         <div ref="accordionButton" class="jx-collapse-button jx-wrapper" @click="toggleButtonContainerVisibility">
-            <div class="jx-tooltip">{{ toolTipText }}</div>
-            <icon-work v-if="showAccordionIcon"/>
+            <div class="jx-tooltip">{{ getAccordionToolTipText }}</div>
+            <icon-work v-if="getAccordionIconVisible"/>
         </div>
 
         <div>
             <transition name="collapse">
-                <div v-if="showButtonGroup" class="jx-button-container">
+                <div v-if="getDockVisible" class="jx-button-container">
                     <jx-dock-button :sidebar-id="SIDEBAR_PERSONAL" icon="person-badge" left="true" title="Personal">
                         <icon-personal/>
                     </jx-dock-button>
@@ -35,34 +35,36 @@ import IconJobBoard from "../Icons/IconJobBoard";
 import IconTemplates from "../Icons/IconTemplates";
 import IconMetrics from "../Icons/IconMetrics";
 import IconWork from "../Icons/IconWork";
+import {mapActions, mapGetters} from "vuex";
 
 export default {
     name: 'ButtonDock',
     components: {IconWork, IconMetrics, IconTemplates, IconJobBoard, IconPersonal, JxDockButton},
     data: () => ({
-        showButtonGroup: true,
-        showAccordionIcon: false,
-        toolTipText: 'Hide',
         SIDEBAR_JOB_BOARD,
         SIDEBAR_TEMPLATES,
         SIDEBAR_METRICS,
         SIDEBAR_PERSONAL
     }),
+    computed: {
+        ...mapGetters(['getAccordionIconVisible', 'getAccordionToolTipText', 'getDockVisible'])
+    },
     methods: {
+        ...mapActions(['toggleAccordionIconVisible', 'updateAccordionToolTipText', 'toggleDockVisible']),
         /**
          * Toggle the button container visibility
          * Toggle the button container accordion icon
          */
         toggleButtonContainerVisibility() {
             // Hide and show the button group container
-            this.showButtonGroup = !this.showButtonGroup;
-            this.showAccordionIcon = !this.showAccordionIcon;
+            this.toggleDockVisible();
+            this.toggleAccordionIconVisible();
             this.$refs.accordionButton.classList.toggle('jx-collapsed');
             this.$refs.accordionButton.classList.remove('jx-wrapper');
 
             setTimeout(() => {
                 this.$refs.accordionButton.classList.add('jx-wrapper');
-                this.toolTipText = this.showButtonGroup ? 'Hide' : 'Show';
+                this.updateAccordionToolTipText(this.getDockVisible ? 'Hide' : 'Show');
             }, 500)
         }
     }
@@ -81,6 +83,7 @@ export default {
     display: flex;
     justify-content: center;
     flex-direction: column;
+    pointer-events: all;
 }
 
 .jx-collapse-button {
@@ -127,7 +130,6 @@ export default {
         height: 30px;
     }
 }
-
 
 .collapse-enter-active, .collapse-leave-active {
     transition: max-height .5s;

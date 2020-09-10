@@ -8,6 +8,8 @@
 </template>
 
 <script>
+import {mapActions} from "vuex";
+
 export default {
     name: "JxDockButton",
     props: ['icon', 'title', 'sidebarId', 'left', 'right'],
@@ -19,8 +21,11 @@ export default {
         }
     },
     methods: {
+        ...mapActions(['updateSideBarId', 'toggleSideBarVisible']),
         handleButtonClick(e) {
             this.setButtonAsActive(e.target)
+            this.updateSideBarId(this.sidebarId);
+            this.toggleSideBarVisible();
         },
         setButtonAsActive(buttonToBeActivated) {
             // Get All Jx-Buttons From The DOM
@@ -29,7 +34,6 @@ export default {
                 button === buttonToBeActivated
                     ? button.classList.add('jx-active-btn')
                     : button.classList.remove('jx-active-btn')
-                console.log(button, buttonToBeActivated);
             }
         }
     }
