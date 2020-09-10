@@ -1,5 +1,5 @@
 <template>
-    <div class="jx-wrapper">
+    <div>
         <button-dock/>
         <side-bar :id="SIDEBAR_JOB_BOARD" title="Job Board"></side-bar>
         <side-bar :id="SIDEBAR_GENERATORS" title="Generators"></side-bar>
@@ -26,3 +26,4 @@ export default {
     })
 };
 </script>
+
