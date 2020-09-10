@@ -1,16 +1,11 @@
 <template>
     <div>
-        <label :for="context">{{ capitalizedContext }}</label>
-        <b-form-tags
+        <textarea
             v-model="inputState"
             :input-id="context"
             :placeholder="`Enter ${context}`"
-            :value="inputState"
             class="mb-2"
-            separator=" ,;"
-            tag-pills
-            tag-variant="primary"
-        ></b-form-tags>
+        ></textarea>
     </div>
 </template>
 

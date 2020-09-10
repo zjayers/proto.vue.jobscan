@@ -1,12 +1,15 @@
 <template>
-    <div :class="borderRadius" class="jx-dock-btn" @click="handleButtonClick">
-        {{ title }}
+    <div :class="borderRadius" class="jx-dock-btn ripple" @click="handleButtonClick">
+        <div class="jx-icon-slot">
+            <slot></slot>
+        </div>
+        <p class="jx-btn-text">{{ title }}</p>
     </div>
 </template>
 
 <script>
 export default {
-    name: "JxButton",
+    name: "JxDockButton",
     props: ['icon', 'title', 'sidebarId', 'left', 'right'],
     computed: {
         borderRadius() {
@@ -23,11 +26,10 @@ export default {
             // Get All Jx-Buttons From The DOM
             const jxButtons = document.querySelectorAll('.jx-dock-btn');
             for (const button of jxButtons) {
-
-                button === buttonToBeActivated ?
-                    button.classList.add('jx-active-btn')
-                    :
-                    button.classList.remove('jx-active-btn')
+                button === buttonToBeActivated
+                    ? button.classList.add('jx-active-btn')
+                    : button.classList.remove('jx-active-btn')
+                console.log(button, buttonToBeActivated);
             }
         }
     }
@@ -37,29 +39,49 @@ export default {
 <style lang="scss" scoped>
 @import '../../scss/theme';
 
+.jx-icon-slot {
+    padding: 0;
+    margin: auto;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.jx-icon-slot svg {
+    fill: $primary;
+    width: 26px;
+    height: 26px;
+    transition: fill .25s ease;
+    pointer-events: none;
+}
+
+.jx-btn-text {
+    margin: 0;
+    color: $primary;
+    pointer-events: none;
+    font-family: $font;
+    font-size: 1em;
+    font-weight: bold;
+}
+
 .jx-dock-btn {
     display: inline-block;
     margin-bottom: 0;
-    font-weight: normal;
     text-align: center;
     white-space: nowrap;
     vertical-align: middle;
     touch-action: manipulation;
     cursor: pointer;
     padding: 6px 12px;
-    font-size: 14px;
-    line-height: 1.42857143;
     user-select: none;
     color: $primary;
     background-color: $white;
     border: 2px solid $primary;
-    transition: all 0.25s ease;
+    transition: all 0.5s ease;
     margin-left: -2px;
-
-    &:active {
-        filter: brightness(.8);
-        transform: translateY(2px);
-    }
 }
 
 .jx-active-btn,
@@ -69,6 +91,14 @@ export default {
     color: $white;
     background-color: $primary;
     border-color: $primary;
+
+    & .jx-icon-slot svg {
+        fill: $white;
+    }
+
+    & .jx-btn-text {
+        color: $white;
+    }
 }
 
 .jx-dock-btn-left {
@@ -79,6 +109,22 @@ export default {
 .jx-dock-btn-right {
     border-bottom-right-radius: 4px;
     border-top-right-radius: 4px;
+}
+
+/* Ripple effect */
+.ripple {
+    background-position: center;
+    transition: background 0.5s ease;
+}
+
+.ripple:hover {
+    background: $primary radial-gradient(circle, transparent 1%, $primary 1%) center/15000%;
+}
+
+.ripple:active {
+    background-color: $primary-highlight;
+    background-size: 100%;
+    transition: background 0s;
 }
 
 </style>

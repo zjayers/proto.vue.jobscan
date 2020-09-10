@@ -1,5 +1,6 @@
 // -------- Colors --------
 $blue: #327BFF;
+$blue-highlight: #aac4fc;
 $indigo: #6610f2;
 $purple: #6f42c1;
 $pink: #e83e8c;
@@ -23,6 +24,7 @@ $black: #000;
 
 // -------- Theme Colors --------
 $primary: $blue;
+$primary-highlight: $blue-highlight;
 $secondary: $gray-600;
 $success: $green;
 $info: $cyan;
@@ -30,3 +32,6 @@ $warning: $yellow;
 $danger: $red;
 $light: $gray-100;
 $dark: $gray-800;
+
+// -------- Font Size --------
+$font: monospace;

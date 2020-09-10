@@ -1,7 +1,8 @@
 <template>
     <div class="jx-button-dock">
 
-        <div ref="accordionButton" class="jx-collapse-button" @click="toggleButtonContainerVisibility">
+        <div ref="accordionButton" class="jx-collapse-button jx-wrapper" @click="toggleButtonContainerVisibility">
+            <div class="jx-tooltip">{{ toolTipText }}</div>
             <icon-work v-if="showAccordionIcon"/>
         </div>
 
@@ -27,13 +28,13 @@
 </template>
 
 <script>
-import JxDockButton from "../JxDockButton";
-import {SIDEBAR_JOB_BOARD, SIDEBAR_METRICS, SIDEBAR_PERSONAL, SIDEBAR_TEMPLATES} from "../../../constants/constants";
-import IconPersonal from "../../Icons/IconPersonal";
-import IconJobBoard from "../../Icons/IconJobBoard";
-import IconTemplates from "../../Icons/IconTemplates";
-import IconMetrics from "../../Icons/IconMetrics";
-import IconWork from "../../Icons/IconWork";
+import JxDockButton from "./JxDockButton";
+import {SIDEBAR_JOB_BOARD, SIDEBAR_METRICS, SIDEBAR_PERSONAL, SIDEBAR_TEMPLATES} from "../../constants/constants";
+import IconPersonal from "../Icons/IconPersonal";
+import IconJobBoard from "../Icons/IconJobBoard";
+import IconTemplates from "../Icons/IconTemplates";
+import IconMetrics from "../Icons/IconMetrics";
+import IconWork from "../Icons/IconWork";
 
 export default {
     name: 'ButtonDock',
@@ -41,6 +42,7 @@ export default {
     data: () => ({
         showButtonGroup: true,
         showAccordionIcon: false,
+        toolTipText: 'Hide',
         SIDEBAR_JOB_BOARD,
         SIDEBAR_TEMPLATES,
         SIDEBAR_METRICS,
@@ -56,6 +58,12 @@ export default {
             this.showButtonGroup = !this.showButtonGroup;
             this.showAccordionIcon = !this.showAccordionIcon;
             this.$refs.accordionButton.classList.toggle('jx-collapsed');
+            this.$refs.accordionButton.classList.remove('jx-wrapper');
+
+            setTimeout(() => {
+                this.$refs.accordionButton.classList.add('jx-wrapper');
+                this.toolTipText = this.showButtonGroup ? 'Hide' : 'Show';
+            }, 500)
         }
     }
 }
@@ -63,7 +71,7 @@ export default {
 
 <style lang="scss" scoped>
 
-@import '../../../scss/theme';
+@import '../../scss/theme';
 
 .jx-button-dock {
     position: fixed;
@@ -87,6 +95,8 @@ export default {
     margin: auto auto 8px;
     transition: all 0.5s ease;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, .2);
+    display: flex;
+    justify-content: center;
 
     &:hover {
         filter: brightness(1.25);
@@ -125,6 +135,62 @@ export default {
 
 .collapse-enter, .collapse-leave-to {
     max-height: 0;
+}
+
+.jx-tooltip {
+    background: $gray-900;
+    font-family: $font;
+    font-size: 1em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    backface-visibility: hidden;
+    bottom: 100%;
+    color: #fff;
+    display: block;
+    margin-bottom: 15px;
+    opacity: 0;
+    padding: 10px;
+    pointer-events: none;
+    position: absolute;
+    width: auto;
+    transform: translateY(10px);
+    transition: all .1s ease;
+    border-radius: 100px;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+    text-align: center;
+    z-index: 1;
+}
+
+/* This bridges the gap so you can mouse into the tooltip without it disappearing */
+.jx-tooltip:before {
+    bottom: -20px;
+    content: " ";
+    display: block;
+    height: 20px;
+    left: 0;
+    position: absolute;
+    width: 50px;
+}
+
+/* CSS Triangles - see Trevor's post */
+.jx-tooltip:after {
+    border-left: solid transparent 14px;
+    border-right: solid transparent 14px;
+    border-top: solid $gray-900 20px;
+    bottom: -10px;
+    content: " ";
+    height: 0;
+    left: 50%;
+    margin-left: -14px;
+    position: absolute;
+    width: 0;
+    z-index: -1;
+}
+
+.jx-wrapper:hover .jx-tooltip {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0px);
 }
 
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <b-card>
+    <div>
         <jx-input context="firstName" type="text"/>
         <jx-input context="lastName" type="text"/>
         <hr/>
@@ -15,7 +15,7 @@
         <jx-tag-input context="skills"/>
         <jx-tag-input context="platforms"/>
         <jx-input context="personalSummary" is-text-area type="text"/>
-    </b-card>
+    </div>
 </template>
 
 <script>
@@ -28,6 +28,6 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 </style>
