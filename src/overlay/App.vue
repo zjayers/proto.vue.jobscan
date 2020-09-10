@@ -1,51 +1,28 @@
 <template>
-    <div>
+    <div class="jx-wrapper">
         <button-dock/>
-        <side-bar :id="SIDEBAR_JOB_BOARD" title="Job Board"/>
-        <side-bar :id="SIDEBAR_GENERATORS" title="Generators"/>
-        <side-bar :id="SIDEBAR_METRICS" title="Metrics"/>
-        <side-bar :id="SIDEBAR_PERSONAL" title="Personal"/>
+        <side-bar :id="SIDEBAR_JOB_BOARD" title="Job Board"></side-bar>
+        <side-bar :id="SIDEBAR_GENERATORS" title="Generators"></side-bar>
+        <side-bar :id="SIDEBAR_METRICS" title="Metrics"></side-bar>
+        <side-bar :id="SIDEBAR_PERSONAL" title="Personal">
+            <Personal/>
+        </side-bar>
     </div>
 </template>
 
 <script>
-
-
 import ButtonDock from "../components/ButtonDock/JxButtonDock";
 import SideBar from "../components/SideBars/SideBar";
-import {SIDEBAR_GENERATORS, SIDEBAR_JOB_BOARD, SIDEBAR_METRICS, SIDEBAR_PERSONAL} from "../constants/constants";
+import {SIDEBAR_JOB_BOARD, SIDEBAR_METRICS, SIDEBAR_PERSONAL, SIDEBAR_TEMPLATES} from "../constants/constants";
+import Personal from "../components/SideBars/Personal/Personal";
 
 export default {
-    components: {SideBar, ButtonDock},
+    components: {Personal, SideBar, ButtonDock},
     data: () => ({
         SIDEBAR_JOB_BOARD,
-        SIDEBAR_GENERATORS,
+        SIDEBAR_GENERATORS: SIDEBAR_TEMPLATES,
         SIDEBAR_METRICS,
         SIDEBAR_PERSONAL
     })
 };
 </script>
-
-<style lang="scss" scoped>
-
-.j-container {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    top: 50%;
-    height: 300px;
-    width: 300px;
-    position: fixed;
-    transform: translateY(-50%);
-}
-
-.j-fixed-left {
-    left: 0;
-}
-
-.j-top-most {
-    z-index: 99999;
-}
-</style>
