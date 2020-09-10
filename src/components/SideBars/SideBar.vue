@@ -1,14 +1,9 @@
 <template>
-    <b-sidebar :id="id"
-               :title="title"
-               backdrop
-               class="jx-sidebar"
-               shadow="lg"
-               width="350px">
-        <div class="px-3 py-2">
+    <div :id="id" :title="title">
+        <div>
             <slot></slot>
         </div>
-    </b-sidebar>
+    </div>
 </template>
 
 <script>
@@ -19,8 +14,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.jx-sidebar {
-    z-index: 99999;
-    width: 300px;
-}
+
 </style>

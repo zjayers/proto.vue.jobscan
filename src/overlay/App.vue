@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="jx-root-container">
         <button-dock/>
         <side-bar :id="SIDEBAR_JOB_BOARD" title="Job Board"></side-bar>
         <side-bar :id="SIDEBAR_TEMPLATES" title="Templates"></side-bar>
@@ -27,3 +27,11 @@ export default {
 };
 </script>
 
+<style lang="scss" scoped>
+.jx-root-container {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    z-index: 1000;
+}
+</style>

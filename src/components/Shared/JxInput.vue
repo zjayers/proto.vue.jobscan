@@ -1,22 +1,17 @@
 <template>
-    <b-form-group :label="label" :label-for="id" class="jx-label">
-        <b-form-textarea v-if="isTextArea"
-                         :id='id'
-                         v-model="inputState"
-                         :placeholder="`Enter your ${placeholder}`"
-                         :type="type"
-                         debounce="500"
-                         no-resize
-                         rows="8"
-                         trim/>
-        <b-form-input v-else
-                      :id='id'
-                      v-model="inputState"
-                      :placeholder="`Enter your ${placeholder}`"
-                      :type="type"
-                      debounce="500"
-                      trim/>
-    </b-form-group>
+    <div>
+        <textarea v-if="isTextArea"
+                  :id='id'
+                  v-model="inputState"
+                  :placeholder="`Enter your ${placeholder}`"
+                  :type="type"
+                  rows="8"/>
+        <input v-else
+               :id='id'
+               v-model="inputState"
+               :placeholder="`Enter your ${placeholder}`"
+               :type="type"/>
+    </div>
 </template>
 
 <script>
@@ -64,7 +59,4 @@ export default {
 
 <style lang="scss" scoped>
 
-.jx-label {
-    text-transform: capitalize;
-}
 </style>
