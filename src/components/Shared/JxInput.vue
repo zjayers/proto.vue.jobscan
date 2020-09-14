@@ -1,7 +1,16 @@
 <template>
     <div class="jx-input-wrapper">
         <span class="jx-input-container">
-            <input :id="id" :name="id" class="jx-input" v-model="inputState" :type="type" />
+            <textarea
+                v-if="isTextArea"
+                :id="id"
+                :name="id"
+                class="jx-input jx-text-area no-resize"
+                v-model="inputState"
+                rows="8"
+            />
+
+            <input v-else :id="id" :name="id" class="jx-input" v-model="inputState" :type="type" />
             <label :for="id" class="jx-label">{{ label }}</label>
         </span>
     </div>
@@ -18,6 +27,10 @@ export default {
         type: {
             type: String,
             required: true
+        },
+        isTextArea: {
+            type: Boolean,
+            required: false
         },
         debounce: {
             type: Boolean,
@@ -55,8 +68,7 @@ export default {
 @import "../../scss/_theme.scss";
 
 .jx-input-wrapper {
-    width: 240px;
-    margin: 10px;
+    width: 100%;
 }
 
 .jx-input-container {
@@ -74,7 +86,7 @@ export default {
     top: 4%;
     left: 1em;
     background: none;
-    color: #b3b3b3;
+    color: $gray-500;
     font-weight: normal;
     cursor: text;
     pointer-events: none;
@@ -88,19 +100,35 @@ export default {
     box-sizing: border-box;
     background-color: white;
     border-radius: 3px;
-    border: 1px solid #ddd;
+    border: 1px solid $gray-500;
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06);
     font-size: 1em;
-    margin-right: 0;
     margin-bottom: 0.75em;
     padding: 0.5em 0.5em;
-    width: 90%;
+    width: 100%;
     margin-top: 5px;
+    &:focus {
+        border-color: $primary;
+        outline-color: $primary;
+    }
+}
+
+.no-resize {
+    resize: none;
 }
 
 .jx-input:focus ~ .jx-label,
 .jx-input.hascontent ~ .jx-label {
     top: -40%;
+    font-size: 0.8em;
+    padding: 0 0.3em;
+    background: $gray-100;
+    border-radius: 100px;
+}
+
+.jx-text-area:focus ~ .jx-label,
+.jx-text-area.hascontent ~ .jx-label {
+    top: -10%;
     font-size: 0.8em;
     padding: 0 0.3em;
     background: $gray-100;

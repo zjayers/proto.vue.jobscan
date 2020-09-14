@@ -3,7 +3,7 @@
         <div v-show="getSideBarVisible" class="jx-sidebar-container">
             <transition name="collapse">
                 <div v-if="getSideBarVisible" class="jx-sidebar-content">
-                    <component :is="sideBarContent"></component>
+                    <component class="jx-fixed-container" :is="sideBarContent"></component>
                 </div>
             </transition>
             <div class="jx-sidebar-overlay" @click="toggleSideBarVisible"></div>
@@ -55,6 +55,10 @@ export default {
 <style lang="scss" scoped>
 @import "../../scss/theme";
 
+$sidebar-base: 340;
+$sidebar-width: $sidebar-base + px;
+$sidebar-interior: $sidebar-base - 120 + px;
+
 .jx-sidebar-container {
     width: 100vw;
     height: 100vh;
@@ -68,13 +72,14 @@ export default {
 }
 
 .jx-sidebar-content {
-    width: 350px;
+    width: $sidebar-width;
     height: 100vh;
     background: $gray-100;
     box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
     padding: 10px;
     overflow-y: scroll;
     z-index: 1001 !important;
+    padding-left: 15px;
 }
 
 .jx-sidebar-overlay {
@@ -82,6 +87,12 @@ export default {
     width: 100%;
     background: rgba(0, 0, 0, 0.4);
     z-index: 1001 !important;
+}
+
+.jx-fixed-container {
+    width: $sidebar-interior;
+    height: 100%;
+    margin: 0;
 }
 
 .collapse-enter-active,
