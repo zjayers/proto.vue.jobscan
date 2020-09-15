@@ -8,19 +8,15 @@
         <jx-input context="website" type="text" />
         <jx-input context="currentJobTitle" type="text" />
         <jx-input context="yearsOfExperience" type="number" />
-        <jx-tag-input context="skills" />
-        <jx-tag-input context="platforms" />
-        <jx-input context="personalSummary" is-text-area type="text" />
     </div>
 </template>
 
 <script>
 import JxInput from "../../Shared/JxInput";
-import JxTagInput from "../../Shared/JxTagInput";
 
 export default {
     name: "Personal",
-    components: { JxTagInput, JxInput }
+    components: { JxInput }
 };
 </script>
 

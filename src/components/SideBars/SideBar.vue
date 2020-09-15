@@ -55,9 +55,9 @@ export default {
 <style lang="scss" scoped>
 @import "../../scss/theme";
 
-$sidebar-base: 340;
+$sidebar-base: 240;
 $sidebar-width: $sidebar-base + px;
-$sidebar-interior: $sidebar-base - 120 + px;
+$sidebar-interior: $sidebar-base - 5 + px;
 
 .jx-sidebar-container {
     width: 100vw;
@@ -84,7 +84,7 @@ $sidebar-interior: $sidebar-base - 120 + px;
 
 .jx-sidebar-overlay {
     height: 100%;
-    width: 100%;
+    flex: 1;
     background: rgba(0, 0, 0, 0.4);
     z-index: 1001 !important;
 }

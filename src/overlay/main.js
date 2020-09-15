@@ -16,6 +16,6 @@ document.body.prepend(rootElement);
 
 // Create the Vue Instance
 new Vue({
-  store,
-  render: (h) => h(App),
+    store,
+    render: h => h(App)
 }).$mount(rootElement);
