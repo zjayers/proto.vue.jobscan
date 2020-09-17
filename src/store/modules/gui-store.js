@@ -4,16 +4,16 @@ const state = {
     accordionIconVisible: false,
     accordionToolTipText: "Hide",
     sideBarVisible: true,
-    sideBarId: "jx-sidebar-personal"
+    sideBarId: "jx-sidebar-job-board",
 };
 
 // -------- Getters -------- //
 const getters = {
-    getDockVisible: state => state.dockVisible,
-    getAccordionIconVisible: state => state.accordionIconVisible,
-    getAccordionToolTipText: state => state.accordionToolTipText,
-    getSideBarVisible: state => state.sideBarVisible,
-    getSideBarId: state => state.sideBarId
+    getDockVisible: (state) => state.dockVisible,
+    getAccordionIconVisible: (state) => state.accordionIconVisible,
+    getAccordionToolTipText: (state) => state.accordionToolTipText,
+    getSideBarVisible: (state) => state.sideBarVisible,
+    getSideBarId: (state) => state.sideBarId,
 };
 // -------- Mutations -------- //
 const mutations = {
@@ -21,7 +21,7 @@ const mutations = {
     setAccordionIconVisible: (state, payload) => (state.accordionIconVisible = payload),
     setAccordionToolTipText: (state, payload) => (state.accordionToolTipText = payload),
     setSideBarVisible: (state, payload) => (state.sideBarVisible = payload),
-    setSideBarId: (state, payload) => (state.sideBarId = payload)
+    setSideBarId: (state, payload) => (state.sideBarId = payload),
 };
 
 // -------- Actions -------- //
@@ -33,7 +33,7 @@ const actions = {
     updateAccordionToolTipText: ({ commit }, payload) => commit("setAccordionToolTipText", payload),
     updateSideBarVisible: ({ commit }, payload) => commit("setSideBarVisible", payload),
     toggleSideBarVisible: ({ commit }) => commit("setSideBarVisible", !state.sideBarVisible),
-    updateSideBarId: ({ commit }, payload) => commit("setSideBarId", payload)
+    updateSideBarId: ({ commit }, payload) => commit("setSideBarId", payload),
 };
 
 export default { state, getters, mutations, actions };

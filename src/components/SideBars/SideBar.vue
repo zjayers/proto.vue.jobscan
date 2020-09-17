@@ -75,11 +75,10 @@ $sidebar-interior: $sidebar-base - 5 + px;
     width: $sidebar-width;
     height: 100vh;
     background: $gray-100;
-    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
-    padding: 10px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
     overflow-y: scroll;
     z-index: 1001 !important;
-    padding-left: 15px;
+    padding: 10px 10px 10px 15px;
 }
 
 .jx-sidebar-overlay {

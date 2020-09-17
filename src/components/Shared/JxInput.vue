@@ -7,10 +7,11 @@
                 :name="id"
                 class="jx-input jx-text-area no-resize"
                 v-model="inputState"
+                :class="hasContent"
                 rows="8"
             />
 
-            <input v-else :id="id" :name="id" class="jx-input" v-model="inputState" :type="type" />
+            <input v-else :id="id" :name="id" class="jx-input" :class="hasContent" v-model="inputState" :type="type" min="0"/>
             <label :for="id" class="jx-label">{{ label }}</label>
         </span>
     </div>
@@ -57,10 +58,13 @@ export default {
             },
             set(value) {
                 const mutationContext = this.context.charAt(0).toUpperCase() + this.context.slice(1);
-                this.$store.commit(`mutate${mutationContext}`, value);
+                this.$store.commit(`set${mutationContext}`, value);
             }
+        },
+        hasContent() {
+            return this.inputState !== '' ? 'has-content' : '';
         }
-    }
+    },
 };
 </script>
 
@@ -81,12 +85,12 @@ export default {
 
 .jx-label {
     transform: translateY(50%);
-    transition: all 0.2s ease-in-out;
+    transition: all 0.1s ease-in-out;
     position: absolute;
     top: 4%;
     left: 1em;
     background: none;
-    color: $gray-500;
+    color: $gray-600;
     font-weight: normal;
     cursor: text;
     pointer-events: none;
@@ -96,17 +100,16 @@ export default {
 .jx-input {
     display: block;
     border-radius: 3px;
-    transition: border-color;
     box-sizing: border-box;
-    background-color: white;
-    border-radius: 3px;
+    background-color: white !important;
     border: 1px solid $gray-500;
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06);
     font-size: 1em;
     margin-bottom: 0.75em;
-    padding: 0.5em 0.5em;
+    padding: 0.6em 0.5em;
     width: 100%;
     margin-top: 5px;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0), inset 0 0 0 100px $white;
+
     &:focus {
         border-color: $primary;
         outline-color: $primary;
@@ -118,16 +121,21 @@ export default {
 }
 
 .jx-input:focus ~ .jx-label,
-.jx-input.hascontent ~ .jx-label {
-    top: -40%;
+.jx-input.has-content ~ .jx-label {
+    top: -38%;
     font-size: 0.8em;
     padding: 0 0.3em;
     background: $gray-100;
     border-radius: 100px;
 }
 
+.jx-input:focus ~ .jx-label,
+.jx-text-area:focus ~ .jx-label{
+    color: $primary;
+}
+
 .jx-text-area:focus ~ .jx-label,
-.jx-text-area.hascontent ~ .jx-label {
+.jx-text-area.has-content ~ .jx-label {
     top: -10%;
     font-size: 0.8em;
     padding: 0 0.3em;

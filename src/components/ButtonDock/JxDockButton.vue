@@ -84,7 +84,7 @@ export default {
     color: $primary;
     background-color: $white;
     border: 2px solid $primary;
-    transition: all 0.5s ease;
+    //transition: all 0.5s ease;
     margin-left: -2px;
 }
 
@@ -123,6 +123,8 @@ export default {
 
 .ripple:hover {
     background: $primary radial-gradient(circle, transparent 1%, $primary 1%) center/15000%;
+
+
 }
 
 .ripple:active {

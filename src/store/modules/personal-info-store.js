@@ -9,7 +9,13 @@ const state = {
     currentJobTitle: "",
     yearsOfExperience: "",
     personalSummary: "",
-    platforms: ["Windows", "Mac", "Linux", "iOS", "Android"],
+    platforms: [
+        { text: "Windows", tiClasses: ["ti-valid"] },
+        { text: "Mac", tiClasses: ["ti-valid"] },
+        { text: "Linux", tiClasses: ["ti-valid"] },
+        { text: "iOS", tiClasses: ["ti-valid"] },
+        { text: "Android", tiClasses: ["ti-valid"] },
+    ],
     skills: [],
 };
 
