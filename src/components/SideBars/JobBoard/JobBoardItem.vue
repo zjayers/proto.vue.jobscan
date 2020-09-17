@@ -1,6 +1,6 @@
 <template>
     <transition name="fade">
-        <div v-show="show" class="jx-site-container" @click="handleItemClick">
+        <div v-show="site.show" class="jx-site-container" @click="updateSiteShownStatus(index)">
             <img :src="site.imageSrc" alt="" class="logo" />
             <p>{{ site.siteName }}</p>
         </div>
@@ -8,21 +8,14 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
     name: "JobBoardItem",
-    data() {
-        return {
-            show: true
-        };
-    },
     props: ["site", "index"],
     methods: {
+        ...mapActions(["updateSiteShownStatus"]),
         handleItemClick() {
-            this.show = false;
-
-            setTimeout(() => {
-                this.$emit("itemClicked");
-            }, 300);
+            
         }
     },
     computed: {
@@ -55,7 +48,7 @@ export default {
 
 .fade-enter-active,
 .fade-leave-active {
-    transition: height .3s ease-out, opacity .3s ease-out, margin-bottom .3s ease-out;
+    transition: height 0.3s ease-out, opacity 0.3s ease-out, margin-bottom 0.3s ease-out;
 }
 
 .fade-enter,

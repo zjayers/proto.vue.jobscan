@@ -1,25 +1,24 @@
 <template>
     <div class="jx-button-dock">
-
         <div ref="accordionButton" class="jx-collapse-button jx-wrapper" @click="toggleButtonContainerVisibility">
             <div class="jx-tooltip">{{ getAccordionToolTipText }}</div>
-            <icon-work v-if="getAccordionIconVisible"/>
+            <icon-work v-if="getAccordionIconVisible" />
         </div>
 
         <div>
             <transition name="collapse">
                 <div v-if="getDockVisible" class="jx-button-container">
                     <jx-dock-button :sidebar-id="SIDEBAR_PERSONAL" icon="person-badge" left="true" title="Personal">
-                        <icon-personal/>
+                        <icon-personal />
                     </jx-dock-button>
                     <jx-dock-button :sidebar-id="SIDEBAR_JOB_BOARD" icon="briefcase" title="Job Board">
-                        <icon-job-board/>
+                        <icon-job-board />
                     </jx-dock-button>
                     <jx-dock-button :sidebar-id="SIDEBAR_TEMPLATES" icon="newspaper" title="Templates">
-                        <icon-templates/>
+                        <icon-templates />
                     </jx-dock-button>
                     <jx-dock-button :sidebar-id="SIDEBAR_METRICS" icon="clipboard-data" right="true" title="Metrics">
-                        <icon-metrics/>
+                        <icon-metrics />
                     </jx-dock-button>
                 </div>
             </transition>
@@ -29,17 +28,17 @@
 
 <script>
 import JxDockButton from "./JxDockButton";
-import {SIDEBAR_JOB_BOARD, SIDEBAR_METRICS, SIDEBAR_PERSONAL, SIDEBAR_TEMPLATES} from "../../constants/constants";
+import { SIDEBAR_JOB_BOARD, SIDEBAR_METRICS, SIDEBAR_PERSONAL, SIDEBAR_TEMPLATES } from "../../constants/constants";
 import IconPersonal from "../Icons/IconPersonal";
 import IconJobBoard from "../Icons/IconJobBoard";
 import IconTemplates from "../Icons/IconTemplates";
 import IconMetrics from "../Icons/IconMetrics";
 import IconWork from "../Icons/IconWork";
-import {mapActions, mapGetters} from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
-    name: 'ButtonDock',
-    components: {IconWork, IconMetrics, IconTemplates, IconJobBoard, IconPersonal, JxDockButton},
+    name: "ButtonDock",
+    components: { IconWork, IconMetrics, IconTemplates, IconJobBoard, IconPersonal, JxDockButton },
     data: () => ({
         SIDEBAR_JOB_BOARD,
         SIDEBAR_TEMPLATES,
@@ -47,10 +46,10 @@ export default {
         SIDEBAR_PERSONAL
     }),
     computed: {
-        ...mapGetters(['getAccordionIconVisible', 'getAccordionToolTipText', 'getDockVisible'])
+        ...mapGetters(["getAccordionIconVisible", "getAccordionToolTipText", "getDockVisible"])
     },
     methods: {
-        ...mapActions(['toggleAccordionIconVisible', 'updateAccordionToolTipText', 'toggleDockVisible']),
+        ...mapActions(["toggleAccordionIconVisible", "updateAccordionToolTipText", "toggleDockVisible"]),
         /**
          * Toggle the button container visibility
          * Toggle the button container accordion icon
@@ -59,21 +58,20 @@ export default {
             // Hide and show the button group container
             this.toggleDockVisible();
             this.toggleAccordionIconVisible();
-            this.$refs.accordionButton.classList.toggle('jx-collapsed');
-            this.$refs.accordionButton.classList.remove('jx-wrapper');
+            this.$refs.accordionButton.classList.toggle("jx-collapsed");
+            this.$refs.accordionButton.classList.remove("jx-wrapper");
 
             setTimeout(() => {
-                this.$refs.accordionButton.classList.add('jx-wrapper');
-                this.updateAccordionToolTipText(this.getDockVisible ? 'Hide' : 'Show');
-            }, 500)
+                this.$refs.accordionButton.classList.add("jx-wrapper");
+                this.updateAccordionToolTipText(this.getDockVisible ? "Hide" : "Show");
+            }, 500);
         }
     }
-}
+};
 </script>
 
 <style lang="scss" scoped>
-
-@import '../../scss/theme';
+@import "../../scss/theme";
 
 .jx-button-dock {
     position: fixed;
@@ -97,7 +95,7 @@ export default {
     cursor: pointer;
     margin: auto auto 8px;
     transition: all 0.5s ease;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, .2);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
     display: flex;
     justify-content: center;
 
@@ -107,15 +105,15 @@ export default {
     }
 
     &:active {
-        filter: brightness(.8);
+        filter: brightness(0.8);
         transform: translateY(2px);
-
     }
 }
 
 .jx-button-container {
     max-height: 200px;
-    box-shadow: 2px 2px 6px rgba(0, 0, 0, .2);
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+    display: flex;
 }
 
 .jx-collapsed {
@@ -131,11 +129,13 @@ export default {
     }
 }
 
-.collapse-enter-active, .collapse-leave-active {
-    transition: max-height .5s;
+.collapse-enter-active,
+.collapse-leave-active {
+    transition: max-height 0.5s;
 }
 
-.collapse-enter, .collapse-leave-to {
+.collapse-enter,
+.collapse-leave-to {
     max-height: 0;
 }
 
@@ -156,7 +156,7 @@ export default {
     position: absolute;
     width: auto;
     transform: translateY(10px);
-    transition: all .1s ease;
+    transition: all 0.1s ease;
     border-radius: 100px;
     box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
     text-align: center;
@@ -194,5 +194,4 @@ export default {
     pointer-events: auto;
     transform: translateY(0px);
 }
-
 </style>

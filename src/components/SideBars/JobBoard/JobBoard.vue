@@ -1,35 +1,22 @@
 <template>
-    <div :class="allCompleted ? '' : 'jx-cursor'">
-        <div v-if="allCompleted">
+    <div :class="getAllComplete ? '' : 'jx-cursor'">
+        <div v-if="getAllComplete">
             <p>All Complete</p>
         </div>
         <div v-else ref="jxJobBoardContainer">
-            <job-board-item v-for="(site, index) in sites" :site="site" :index="index" :key="site.siteName"
-                            @itemClicked="checkIfComplete" />
+            <job-board-item v-for="(site, index) in getSites" :site="site" :index="index" :key="site.siteName" />
         </div>
     </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import JobBoardItem from "./JobBoardItem";
-import { JobBoardDataMixin } from "../../mixins/JobBoardData";
 
 export default {
     name: "JobBoard",
     components: { JobBoardItem },
-    mixins: [JobBoardDataMixin],
-    data() {
-        return {
-            allCompleted: false
-        };
-    },
-    methods: {
-        // TODO REFACTOR JOB BOARD TO USE VUEX
-        checkIfComplete() {
-            this.sites.shift();
-            this.allCompleted = this.sites.length <= 0;
-        }
-    }
+    computed: mapGetters(["getSites", "getAllComplete"])
 };
 </script>
 
