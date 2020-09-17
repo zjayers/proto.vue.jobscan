@@ -1,5 +1,5 @@
 <template>
-    <div :class="borderRadius" class="jx-dock-btn ripple" @click="handleButtonClick">
+    <div :class="[borderRadius, activeClass]" :id="id" class="jx-dock-btn ripple" @click="handleButtonClick">
         <div class="jx-icon-slot">
             <slot></slot>
         </div>
@@ -8,35 +8,45 @@
 </template>
 
 <script>
-import {mapActions} from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
     name: "JxDockButton",
     props: ['icon', 'title', 'sidebarId', 'left', 'right'],
     computed: {
+        ...mapGetters(["getActiveButton"]),
         borderRadius() {
-            if (this.left) return 'jx-dock-btn-left';
-            if (this.right) return 'jx-dock-btn-right';
-            return '';
+            if (this.left) return "jx-dock-btn-left";
+            if (this.right) return "jx-dock-btn-right";
+            return "";
+        },
+        activeClass() {
+            return this.getActiveButton === this.id
+                ? "jx-active-btn"
+                : "";
+        },
+        id() {
+            return `jx-dock-${this.title}`;
         }
     },
     methods: {
-        ...mapActions(['updateSideBarId', 'toggleSideBarVisible']),
+        ...mapActions(["updateSideBarId", "toggleSideBarVisible", "updateActiveButton"]),
         handleButtonClick(e) {
-            this.setButtonAsActive(e.target)
+            this.setButtonAsActive(e.target);
             this.updateSideBarId(this.sidebarId);
             this.toggleSideBarVisible();
+            this.updateActiveButton(this.id);
         },
         setButtonAsActive(buttonToBeActivated) {
             // Get All Jx-Buttons From The DOM
-            const jxButtons = document.querySelectorAll('.jx-dock-btn');
+            const jxButtons = document.querySelectorAll(".jx-dock-btn");
             for (const button of jxButtons) {
                 button === buttonToBeActivated
-                    ? button.classList.add('jx-active-btn')
-                    : button.classList.remove('jx-active-btn')
+                    ? button.classList.add("jx-active-btn")
+                    : button.classList.remove("jx-active-btn");
             }
         }
-    }
+    },
 }
 </script>
 

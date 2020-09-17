@@ -5,6 +5,7 @@ const state = {
     accordionToolTipText: "Hide",
     sideBarVisible: true,
     sideBarId: "jx-sidebar-job-board",
+    activeButton: null,
 };
 
 // -------- Getters -------- //
@@ -14,6 +15,7 @@ const getters = {
     getAccordionToolTipText: (state) => state.accordionToolTipText,
     getSideBarVisible: (state) => state.sideBarVisible,
     getSideBarId: (state) => state.sideBarId,
+    getActiveButton: (state) => state.activeButton,
 };
 // -------- Mutations -------- //
 const mutations = {
@@ -22,6 +24,7 @@ const mutations = {
     setAccordionToolTipText: (state, payload) => (state.accordionToolTipText = payload),
     setSideBarVisible: (state, payload) => (state.sideBarVisible = payload),
     setSideBarId: (state, payload) => (state.sideBarId = payload),
+    setActiveButton: (state, payload) => (state.activeButton = payload),
 };
 
 // -------- Actions -------- //
@@ -33,6 +36,7 @@ const actions = {
     updateAccordionToolTipText: ({ commit }, payload) => commit("setAccordionToolTipText", payload),
     updateSideBarVisible: ({ commit }, payload) => commit("setSideBarVisible", payload),
     toggleSideBarVisible: ({ commit }) => commit("setSideBarVisible", !state.sideBarVisible),
+    updateActiveButton: ({ commit }, payload) => commit("setActiveButton", payload),
     updateSideBarId: ({ commit }, payload) => commit("setSideBarId", payload),
 };
 

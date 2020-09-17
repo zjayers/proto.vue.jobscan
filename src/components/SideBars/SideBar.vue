@@ -6,7 +6,7 @@
                     <component class="jx-fixed-container" :is="sideBarContent"></component>
                 </div>
             </transition>
-            <div class="jx-sidebar-overlay" @click="toggleSideBarVisible"></div>
+            <div class="jx-sidebar-overlay" @click="handleSideBarClose"></div>
         </div>
     </transition>
 </template>
@@ -47,7 +47,11 @@ export default {
         }
     },
     methods: {
-        ...mapActions(["toggleSideBarVisible"])
+        ...mapActions(["toggleSideBarVisible", 'updateActiveButton']),
+        handleSideBarClose() {
+            this.toggleSideBarVisible();
+            this.updateActiveButton(null);
+        }
     }
 };
 </script>

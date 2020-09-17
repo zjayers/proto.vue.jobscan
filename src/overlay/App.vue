@@ -1,16 +1,18 @@
 <template>
     <div class="jx-root-container">
-        <button-dock/>
-        <side-bar/>
+        <confetti />
+        <button-dock />
+        <side-bar />
     </div>
 </template>
 
 <script>
 import ButtonDock from "../components/ButtonDock/JxButtonDock";
 import SideBar from "../components/SideBars/SideBar";
+import Confetti from "../components/Shared/Confetti";
 
 export default {
-    components: {SideBar, ButtonDock},
+    components: { Confetti, SideBar, ButtonDock }
 };
 </script>
 

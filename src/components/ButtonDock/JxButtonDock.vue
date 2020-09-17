@@ -29,11 +29,11 @@
 <script>
 import JxDockButton from "./JxDockButton";
 import { SIDEBAR_JOB_BOARD, SIDEBAR_METRICS, SIDEBAR_PERSONAL, SIDEBAR_TEMPLATES } from "../../constants/constants";
-import IconPersonal from "../Icons/IconPersonal";
-import IconJobBoard from "../Icons/IconJobBoard";
-import IconTemplates from "../Icons/IconTemplates";
-import IconMetrics from "../Icons/IconMetrics";
-import IconWork from "../Icons/IconWork";
+import IconPersonal from "../../assets/Icons/IconPersonal";
+import IconJobBoard from "../../assets/Icons/IconJobBoard";
+import IconTemplates from "../../assets/Icons/IconTemplates";
+import IconMetrics from "../../assets/Icons/IconMetrics";
+import IconWork from "../../assets/Icons/IconWork";
 import { mapActions, mapGetters } from "vuex";
 
 export default {
