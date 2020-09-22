@@ -4,18 +4,22 @@ const state = {
     accordionIconVisible: false,
     accordionToolTipText: "Hide",
     sideBarVisible: true,
-    sideBarId: "jx-sidebar-job-board",
+    sideBarId: "jx-sidebar-templates",
     activeButton: null,
+    templateId: "",
+    activeTemplate: null
 };
 
 // -------- Getters -------- //
 const getters = {
-    getDockVisible: (state) => state.dockVisible,
-    getAccordionIconVisible: (state) => state.accordionIconVisible,
-    getAccordionToolTipText: (state) => state.accordionToolTipText,
-    getSideBarVisible: (state) => state.sideBarVisible,
-    getSideBarId: (state) => state.sideBarId,
-    getActiveButton: (state) => state.activeButton,
+    getDockVisible: state => state.dockVisible,
+    getAccordionIconVisible: state => state.accordionIconVisible,
+    getAccordionToolTipText: state => state.accordionToolTipText,
+    getSideBarVisible: state => state.sideBarVisible,
+    getSideBarId: state => state.sideBarId,
+    getActiveButton: state => state.activeButton,
+    getTemplateId: state => state.templateId,
+    getActiveTemplate: state => state.activeTemplate
 };
 // -------- Mutations -------- //
 const mutations = {
@@ -25,6 +29,8 @@ const mutations = {
     setSideBarVisible: (state, payload) => (state.sideBarVisible = payload),
     setSideBarId: (state, payload) => (state.sideBarId = payload),
     setActiveButton: (state, payload) => (state.activeButton = payload),
+    setTemplateId: (state, payload) => (state.templateId = payload),
+    setActiveTemplate: (state, payload) => (state.activeTemplate = payload)
 };
 
 // -------- Actions -------- //
@@ -38,6 +44,11 @@ const actions = {
     toggleSideBarVisible: ({ commit }) => commit("setSideBarVisible", !state.sideBarVisible),
     updateActiveButton: ({ commit }, payload) => commit("setActiveButton", payload),
     updateSideBarId: ({ commit }, payload) => commit("setSideBarId", payload),
+
+    updateTemplateVisible: ({ commit }, payload) => commit("setTemplateVisible", payload),
+    toggleTemplateVisible: ({ commit }) => commit("setTemplateVisible", !state.sideBarVisible),
+    updateActiveTemplate: ({ commit }, payload) => commit("setActiveTemplate", payload),
+    updateTemplateId: ({ commit }, payload) => commit("setTemplateId", payload)
 };
 
 export default { state, getters, mutations, actions };

@@ -7,9 +7,7 @@
             <div class="jx-jb-site" @click="handleItemClick">
                 <p>{{ site.siteName }}</p>
             </div>
-            <div class="jx-jb-close" @click="handleItemHide">
-                x
-            </div>
+            <div class="jx-jb-close" @click="handleItemHide">x</div>
         </div>
     </transition>
 </template>
@@ -27,19 +25,18 @@ export default {
         },
         handleItemClick() {
             window.location = this.site.httpAddress;
-        }
+        },
     },
     computed: {
         siteName() {
             return JSON.stringify(this.site);
-        }
-    }
+        },
+    },
 };
 </script>
 
 <style lang="scss" scoped>
-
-@import '../../../scss/theme';
+@import "../../../scss/theme";
 
 .jx-site-container {
     width: 90%;
@@ -89,7 +86,7 @@ export default {
     }
 
     & .jx-jb-site {
-        background-color: $gray-300;
+        background-color: $gray-200;
         flex: 1;
         padding-left: 8px;
     }
@@ -127,6 +124,4 @@ export default {
     height: 0;
     opacity: 0;
 }
-
-
 </style>
