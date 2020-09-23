@@ -4,7 +4,7 @@ const state = {
     accordionIconVisible: false,
     accordionToolTipText: "Hide",
     sideBarVisible: true,
-    sideBarId: "jx-sidebar-templates",
+    sideBarId: "jx-sidebar-job-board",
     activeButton: null,
     templateId: "",
     activeTemplate: null

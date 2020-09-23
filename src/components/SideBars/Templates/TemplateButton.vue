@@ -98,7 +98,6 @@ export default {
     color: $primary;
     background-color: $white;
     border: 2px solid $primary;
-    //transition: all 0.5s ease;
     margin-left: -2px;
 }
 
