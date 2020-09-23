@@ -26,7 +26,7 @@ export default {
         SIDEBAR_JOB_BOARD,
         SIDEBAR_METRICS,
         SIDEBAR_PERSONAL,
-        SIDEBAR_TEMPLATES
+        SIDEBAR_TEMPLATES,
     }),
     props: ["id", "title"],
     computed: {
@@ -44,15 +44,15 @@ export default {
                 default:
                     return "";
             }
-        }
+        },
     },
     methods: {
-        ...mapActions(["toggleSideBarVisible", 'updateActiveButton']),
+        ...mapActions(["toggleSideBarVisible", "updateActiveButton"]),
         handleSideBarClose() {
             this.toggleSideBarVisible();
             this.updateActiveButton(null);
-        }
-    }
+        },
+    },
 };
 </script>
 
@@ -83,6 +83,7 @@ $sidebar-interior: $sidebar-base - 5 + px;
     overflow-y: scroll;
     z-index: 1001 !important;
     padding: 10px 10px 10px 15px;
+    margin-bottom: 60px;
 }
 
 .jx-sidebar-overlay {

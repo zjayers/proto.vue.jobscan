@@ -4,10 +4,10 @@ const state = {
     accordionIconVisible: false,
     accordionToolTipText: "Hide",
     sideBarVisible: true,
-    sideBarId: "jx-sidebar-job-board",
+    sideBarId: "jx-sidebar-templates",
     activeButton: null,
     templateId: "",
-    activeTemplate: null
+    activeTemplate: "jx-template-Cover"
 };
 
 // -------- Getters -------- //

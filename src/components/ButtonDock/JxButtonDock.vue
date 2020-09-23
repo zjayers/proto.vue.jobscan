@@ -1,6 +1,10 @@
 <template>
     <div class="jx-button-dock">
-        <div ref="accordionButton" class="jx-collapse-button jx-wrapper" @click="toggleButtonContainerVisibility">
+        <div
+            ref="accordionButton"
+            class="jx-collapse-button jx-wrapper"
+            @click="toggleButtonContainerVisibility"
+        >
             <div class="jx-tooltip">{{ getAccordionToolTipText }}</div>
             <icon-work v-if="getAccordionIconVisible" />
         </div>
@@ -8,18 +12,31 @@
         <div>
             <transition name="collapse">
                 <div v-if="getDockVisible" class="jx-button-container">
-                    <jx-dock-button :sidebar-id="SIDEBAR_PERSONAL" icon="person-badge" left="true" title="Personal">
+                    <jx-dock-button
+                        :sidebar-id="SIDEBAR_PERSONAL"
+                        icon="person-badge"
+                        left="true"
+                        title="Personal"
+                    >
                         <icon-personal />
                     </jx-dock-button>
-                    <jx-dock-button :sidebar-id="SIDEBAR_JOB_BOARD" icon="briefcase" title="Job Board">
+                    <jx-dock-button
+                        :sidebar-id="SIDEBAR_JOB_BOARD"
+                        icon="briefcase"
+                        title="Job Board"
+                    >
                         <icon-job-board />
                     </jx-dock-button>
-                    <jx-dock-button :sidebar-id="SIDEBAR_TEMPLATES" icon="newspaper" title="Templates">
+                    <jx-dock-button
+                        :sidebar-id="SIDEBAR_TEMPLATES"
+                        icon="newspaper"
+                        title="Templates"
+                    >
                         <icon-templates />
                     </jx-dock-button>
-                    <jx-dock-button :sidebar-id="SIDEBAR_METRICS" icon="clipboard-data" right="true" title="Metrics">
+                    <!-- <jx-dock-button :sidebar-id="SIDEBAR_METRICS" icon="clipboard-data" right="true" title="Metrics">
                         <icon-metrics />
-                    </jx-dock-button>
+                    </jx-dock-button>-->
                 </div>
             </transition>
         </div>
@@ -32,21 +49,20 @@ import { SIDEBAR_JOB_BOARD, SIDEBAR_METRICS, SIDEBAR_PERSONAL, SIDEBAR_TEMPLATES
 import IconPersonal from "../../assets/Icons/IconPersonal";
 import IconJobBoard from "../../assets/Icons/IconJobBoard";
 import IconTemplates from "../../assets/Icons/IconTemplates";
-import IconMetrics from "../../assets/Icons/IconMetrics";
 import IconWork from "../../assets/Icons/IconWork";
 import { mapActions, mapGetters } from "vuex";
 
 export default {
     name: "ButtonDock",
-    components: { IconWork, IconMetrics, IconTemplates, IconJobBoard, IconPersonal, JxDockButton },
+    components: { IconWork, IconTemplates, IconJobBoard, IconPersonal, JxDockButton },
     data: () => ({
         SIDEBAR_JOB_BOARD,
         SIDEBAR_TEMPLATES,
         SIDEBAR_METRICS,
-        SIDEBAR_PERSONAL
+        SIDEBAR_PERSONAL,
     }),
     computed: {
-        ...mapGetters(["getAccordionIconVisible", "getAccordionToolTipText", "getDockVisible"])
+        ...mapGetters(["getAccordionIconVisible", "getAccordionToolTipText", "getDockVisible"]),
     },
     methods: {
         ...mapActions(["toggleAccordionIconVisible", "updateAccordionToolTipText", "toggleDockVisible"]),
@@ -65,8 +81,8 @@ export default {
                 this.$refs.accordionButton.classList.add("jx-wrapper");
                 this.updateAccordionToolTipText(this.getDockVisible ? "Hide" : "Show");
             }, 500);
-        }
-    }
+        },
+    },
 };
 </script>
 

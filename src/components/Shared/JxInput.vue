@@ -11,7 +11,16 @@
                 rows="8"
             />
 
-            <input v-else :id="id" :name="id" class="jx-input" :class="hasContent" v-model="inputState" :type="type" min="0"/>
+            <input
+                v-else
+                :id="id"
+                :name="id"
+                class="jx-input"
+                :class="hasContent"
+                v-model="inputState"
+                :type="type"
+                min="0"
+            />
             <label :for="id" class="jx-label">{{ label }}</label>
         </span>
     </div>
@@ -23,20 +32,20 @@ export default {
     props: {
         context: {
             type: String,
-            required: true
+            required: true,
         },
         type: {
             type: String,
-            required: true
+            required: true,
         },
         isTextArea: {
             type: Boolean,
-            required: false
+            required: false,
         },
         debounce: {
             type: Boolean,
-            required: false
-        }
+            required: false,
+        },
     },
     computed: {
         capitalizedContext() {
@@ -48,7 +57,7 @@ export default {
         label() {
             return this.context
                 .split(/([A-Z][a-z]+)/)
-                .filter(e => e)
+                .filter((e) => e)
                 .join(" ")
                 .toLowerCase();
         },
@@ -59,11 +68,11 @@ export default {
             set(value) {
                 const mutationContext = this.context.charAt(0).toUpperCase() + this.context.slice(1);
                 this.$store.commit(`set${mutationContext}`, value);
-            }
+            },
         },
         hasContent() {
-            return this.inputState !== '' ? 'has-content' : '';
-        }
+            return this.inputState !== "" ? "has-content" : "";
+        },
     },
 };
 </script>
@@ -81,6 +90,11 @@ export default {
     clear: both;
     max-width: 500px;
     margin: 0 auto;
+    height: 100%;
+}
+
+.jx-text-area {
+    height: 100% !important;
 }
 
 .jx-label {
@@ -109,6 +123,7 @@ export default {
     width: 100%;
     margin-top: 5px;
     box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0), inset 0 0 0 100px $white;
+    height: 2.5rem;
 
     &:focus {
         border-color: $primary;
@@ -122,7 +137,7 @@ export default {
 
 .jx-input:focus ~ .jx-label,
 .jx-input.has-content ~ .jx-label {
-    top: -38%;
+    top: -1rem;
     font-size: 0.8em;
     padding: 0 0.3em;
     background: $gray-100;
@@ -130,13 +145,13 @@ export default {
 }
 
 .jx-input:focus ~ .jx-label,
-.jx-text-area:focus ~ .jx-label{
+.jx-text-area:focus ~ .jx-label {
     color: $primary;
 }
 
 .jx-text-area:focus ~ .jx-label,
 .jx-text-area.has-content ~ .jx-label {
-    top: -10%;
+    top: -1rem;
     font-size: 0.8em;
     padding: 0 0.3em;
     background: $gray-100;

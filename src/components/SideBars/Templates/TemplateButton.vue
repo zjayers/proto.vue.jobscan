@@ -33,12 +33,11 @@ export default {
         },
     },
     methods: {
-        ...mapActions(["updateTemplateId", "toggleTemplateVisible", "updateActiveTemplate"]),
+        ...mapActions(["updateTemplateId", "updateActiveTemplate"]),
         handleButtonClick(e) {
             this.setButtonAsActive(e.target);
-            this.updateSideBarId(this.sidebarId);
-            this.toggleSideBarVisible();
-            this.updateActiveButton(this.id);
+            this.updateTemplateId(this.sidebarId);
+            this.updateActiveTemplate(this.id);
         },
         setButtonAsActive(buttonToBeActivated) {
             // Get All Jx-Buttons From The DOM
@@ -87,7 +86,7 @@ export default {
 .jx-template-btn {
     display: inline-block;
     margin-bottom: 0;
-    width: 32.4%;
+    flex: 1;
     text-align: center;
     white-space: nowrap;
     vertical-align: middle;
