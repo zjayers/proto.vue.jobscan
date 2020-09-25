@@ -1,3 +1,5 @@
+import { templates } from "../../data/Templates";
+
 // -------- State -------- //
 const state = {
     contactName: "",
@@ -5,7 +7,7 @@ const state = {
     jobTitle: "",
     keywords: [],
     template: "",
-    contactType: "Outreach"
+    contactType: ""
 };
 
 // -------- Getters -------- //
@@ -25,7 +27,8 @@ const mutations = {
     setJobTitle: (state, payload) => (state.jobTitle = payload),
     setKeywords: (state, payload) => (state.keywords = payload),
     setTemplate: (state, payload) => (state.template = payload),
-    setContactType: (state, payload) => (state.contactType = payload)
+    setContactType: (state, payload) => (state.contactType = payload),
+    refreshTemplate: (state, store) => (state.template = parseTemplateContent(store, state.template))
 };
 
 // -------- Actions -------- //
@@ -37,5 +40,9 @@ const actions = {
     updateTemplate: ({ commit }, payload) => commit("setTemplate", payload),
     updateContactType: ({ commit }, payload) => commit("setContactType", payload)
 };
+
+function parseTemplateContent(store) {
+    //TODO
+}
 
 export default { state, getters, mutations, actions };

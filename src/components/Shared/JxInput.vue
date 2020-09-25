@@ -46,6 +46,10 @@ export default {
             type: Boolean,
             required: false,
         },
+        content: {
+            type: String,
+            required: false,
+        },
     },
     computed: {
         capitalizedContext() {
@@ -68,6 +72,8 @@ export default {
             set(value) {
                 const mutationContext = this.context.charAt(0).toUpperCase() + this.context.slice(1);
                 this.$store.commit(`set${mutationContext}`, value);
+                console.log(this.$store.getters.getTemplate);
+                this.$store.commit("refreshTemplate", this.$store);
             },
         },
         hasContent() {

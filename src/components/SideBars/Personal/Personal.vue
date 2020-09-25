@@ -1,5 +1,6 @@
 <template>
     <div class="jx-personal-container">
+        <jx-input context="firstName" type="text" />
         <jx-input context="lastName" type="text" />
         <jx-input context="email" type="email" />
         <jx-input context="phoneNumber" type="tel" />

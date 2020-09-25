@@ -14,6 +14,7 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
+import { templates } from "../../../data/Templates";
 
 export default {
     name: "JxTemplateButton",
@@ -33,11 +34,14 @@ export default {
         },
     },
     methods: {
-        ...mapActions(["updateTemplateId", "updateActiveTemplate"]),
+        ...mapActions(["updateTemplateId", "updateContactType", "updateActiveTemplate", "updateTemplate"]),
         handleButtonClick(e) {
             this.setButtonAsActive(e.target);
-            this.updateTemplateId(this.sidebarId);
             this.updateActiveTemplate(this.id);
+            const splitId = this.id.split("-").pop();
+            const updateKey = Object.keys(templates[splitId])[0];
+            this.updateContactType(updateKey);
+            this.updateTemplate();
         },
         setButtonAsActive(buttonToBeActivated) {
             // Get All Jx-Buttons From The DOM

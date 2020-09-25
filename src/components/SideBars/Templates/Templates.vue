@@ -38,6 +38,10 @@ import { mapActions, mapGetters } from "vuex";
 export default {
     name: "Templates",
     components: { TemplateButton, JxInput, JxTagInput },
+    created() {
+        this.updateTemplate();
+        this.updateContactType("Default");
+    },
     data() {
         return {
             TEMPLATE_COVER,
@@ -57,11 +61,15 @@ export default {
                     return [];
             }
         },
+        activeTemplate() {
+            return this.getActiveTemplate.split("-").pop();
+        },
     },
     methods: {
-        ...mapActions(["updateContactType"]),
+        ...mapActions(["updateContactType", "updateTemplate"]),
         handleSelectChange(e) {
             this.updateContactType(e.target.value);
+            this.updateTemplate();
         },
     },
 };
