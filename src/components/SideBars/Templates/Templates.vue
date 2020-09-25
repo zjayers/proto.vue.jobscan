@@ -39,8 +39,8 @@ export default {
     name: "Templates",
     components: { TemplateButton, JxInput, JxTagInput },
     created() {
-        this.updateTemplate();
         this.updateContactType("Default");
+        this.$store.commit("refreshTemplate", this.$store);
     },
     data() {
         return {
@@ -69,7 +69,7 @@ export default {
         ...mapActions(["updateContactType", "updateTemplate"]),
         handleSelectChange(e) {
             this.updateContactType(e.target.value);
-            this.updateTemplate();
+            this.$store.commit("refreshTemplate", this.$store);
         },
     },
 };

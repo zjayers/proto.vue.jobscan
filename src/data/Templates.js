@@ -1,4 +1,4 @@
-const COVER_DEFAULT = `Default Cover Works <$-contactName-$>`;
+const COVER_DEFAULT = `Default Cover Works <$-CONTACTNAME-$>`;
 
 const OUTREACH_RECRUITER = `Recruiter works`;
 

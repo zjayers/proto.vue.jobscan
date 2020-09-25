@@ -42,7 +42,16 @@ const actions = {
 };
 
 function parseTemplateContent(store) {
-    //TODO
+    const activeTemplate = store.getters.getActiveTemplate.split("-").pop();
+    const contactType = store.getters.getContactType;
+    let parsedContent = templates[activeTemplate][contactType];
+    for (const getter in store.getters) {
+        const key = getter.replace("get", "");
+        const parsableKey = `<$-${key.toUpperCase()}-$>`;
+        parsedContent = parsedContent.replace(parsableKey, store.getters[getter]);
+    }
+
+    return parsedContent ? parsedContent : "";
 }
 
 export default { state, getters, mutations, actions };

@@ -41,7 +41,7 @@ export default {
             const splitId = this.id.split("-").pop();
             const updateKey = Object.keys(templates[splitId])[0];
             this.updateContactType(updateKey);
-            this.updateTemplate();
+            this.$store.commit("refreshTemplate", this.$store);
         },
         setButtonAsActive(buttonToBeActivated) {
             // Get All Jx-Buttons From The DOM
