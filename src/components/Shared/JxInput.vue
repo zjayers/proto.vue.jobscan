@@ -1,28 +1,42 @@
 <template>
     <div class="jx-input-wrapper">
-        <span class="jx-input-container">
+        <div class="jx-input-container">
             <textarea
                 v-if="isTextArea"
                 :id="id"
-                :name="id"
-                class="jx-input jx-text-area no-resize"
                 v-model="inputState"
                 :class="hasContent"
+                :name="id"
+                class="jx-input jx-text-area no-resize"
                 rows="8"
+                v-html="inputState"
             />
+
+            <template v-else-if="isHtmlArea">
+                <pre
+                    id="jx-html-area"
+                    :class="hasContent"
+                    :name="id"
+                    class="jx-input jx-text-area"
+                    v-html="innerHTML"
+                />
+
+                <slot></slot>
+            </template>
+
 
             <input
                 v-else
                 :id="id"
-                :name="id"
-                class="jx-input"
-                :class="hasContent"
                 v-model="inputState"
+                :class="hasContent"
+                :name="id"
                 :type="type"
+                class="jx-input"
                 min="0"
             />
             <label :for="id" class="jx-label">{{ label }}</label>
-        </span>
+        </div>
     </div>
 </template>
 
@@ -32,24 +46,24 @@ export default {
     props: {
         context: {
             type: String,
-            required: true,
+            required: true
         },
         type: {
             type: String,
-            required: true,
+            required: true
         },
         isTextArea: {
             type: Boolean,
-            required: false,
+            required: false
         },
-        debounce: {
+        isHtmlArea: {
             type: Boolean,
-            required: false,
+            required: false
         },
         content: {
             type: String,
-            required: false,
-        },
+            required: false
+        }
     },
     computed: {
         capitalizedContext() {
@@ -65,6 +79,9 @@ export default {
                 .join(" ")
                 .toLowerCase();
         },
+        innerHTML() {
+            return this.$store.getters[`get${this.capitalizedContext}`];
+        },
         inputState: {
             get() {
                 return this.$store.getters[`get${this.capitalizedContext}`];
@@ -73,12 +90,12 @@ export default {
                 const mutationContext = this.context.charAt(0).toUpperCase() + this.context.slice(1);
                 this.$store.commit(`set${mutationContext}`, value);
                 this.$store.commit("refreshTemplate", this.$store);
-            },
+            }
         },
         hasContent() {
             return this.inputState !== "" ? "has-content" : "";
-        },
-    },
+        }
+    }
 };
 </script>
 
@@ -100,6 +117,13 @@ export default {
 
 .jx-text-area {
     height: 100% !important;
+    word-wrap: normal;
+    overflow-y: scroll;
+    line-height: 1.6;
+}
+
+#jx-html-area {
+    white-space: pre-wrap;
 }
 
 .jx-label {
@@ -115,6 +139,7 @@ export default {
     pointer-events: none;
     text-transform: capitalize;
 }
+
 
 .jx-input {
     display: block;

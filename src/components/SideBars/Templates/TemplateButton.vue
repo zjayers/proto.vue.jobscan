@@ -1,7 +1,7 @@
 <template>
     <div
-        :class="[borderRadius, activeClass]"
         :id="id"
+        :class="[borderRadius, activeClass]"
         class="jx-template-btn ripple"
         @click="handleButtonClick"
     >
@@ -31,7 +31,7 @@ export default {
         },
         id() {
             return `jx-template-${this.title}`;
-        },
+        }
     },
     methods: {
         ...mapActions(["updateTemplateId", "updateContactType", "updateActiveTemplate", "updateTemplate"]),
@@ -51,8 +51,8 @@ export default {
                     ? button.classList.add("jx-active-btn__templates")
                     : button.classList.remove("jx-active-btn__templates");
             }
-        },
-    },
+        }
+    }
 };
 </script>
 
@@ -63,7 +63,7 @@ export default {
     padding: 0;
     margin: auto;
     width: 32px;
-    height: 32px;
+    height: 0px;
     display: flex;
     align-items: center;
     justify-content: center;

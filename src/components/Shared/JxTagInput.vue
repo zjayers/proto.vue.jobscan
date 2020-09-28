@@ -1,29 +1,29 @@
 <template>
     <vue-tags-input
         v-model="tag"
-        :tags="inputState"
-        :autocomplete-items="filteredItems"
         :allow-edit-tags="true"
+        :autocomplete-items="filteredItems"
         :avoid-adding-duplicates="true"
         :placeholder="placeholder || 'Add New Tag'"
+        :tags="inputState"
         @tags-changed="newTags => inputState = newTags"
     />
 </template>
 
 <script>
-import VueTagsInput from '@johmun/vue-tags-input';
+import VueTagsInput from "@johmun/vue-tags-input";
 import { autoCompleteDataMixin } from "../../components/mixins/AutoCompleteData.js";
 
 export default {
     name: "JxTagInput",
     components: {
-        VueTagsInput,
+        VueTagsInput
     },
     mixins: [autoCompleteDataMixin],
     data() {
         return {
-            tag: '',
-        }
+            tag: ""
+        };
     },
     props: {
         context: {
@@ -46,33 +46,40 @@ export default {
             set(value) {
                 const mutationContext = this.context.charAt(0).toUpperCase() + this.context.slice(1);
                 this.$store.commit(`set${mutationContext}`, value);
-            },
+            }
 
         },
         filteredItems() {
             return this.$data.autocompleteItems.filter(i => {
                 return i.text.toLowerCase().indexOf(this.tag.toLowerCase()) !== -1;
             });
-        },
-    },
-}
+        }
+    }
+};
 </script>
 
 <style lang="scss">
 
 @import '../../scss/theme';
 
+.vue-tags-input {
+    margin-bottom: 10px;
+}
+
 .vue-tags-input .ti-input {
     padding: 4px 10px;
-    transition: border-bottom 0.2s ease;
-    margin-top: 10px;
-    background: $white;
+    border-radius: 3px;
+    box-sizing: border-box;
+    border: 1px solid $gray-500;
+    min-height: 2.5rem;
 }
 
 .vue-tags-input.ti-focus .ti-input {
-    border: 1px solid $gray-500;
+    box-shadow: 0 0 0 1px $primary;
     border-radius: 4px;
     font-size: 1em;
+    border-color: $primary;
+
 }
 
 .vue-tags-input .ti-autocomplete {
@@ -96,7 +103,7 @@ export default {
 }
 
 .vue-tags-input .ti-tag.ti-invalid {
-    background-color:$red;
+    background-color: $red;
 }
 
 .vue-tags-input .ti-new-tag-input.ti-invalid {
@@ -127,8 +134,7 @@ export default {
 .vue-tags-input ::-webkit-input-placeholder,
 .vue-tags-input ::-moz-placeholder,
 .vue-tags-input :-ms-input-placeholder,
-.vue-tags-input :-moz-placeholder
-{
+.vue-tags-input :-moz-placeholder {
     color: $gray-600;
     font-size: .9em;
 }

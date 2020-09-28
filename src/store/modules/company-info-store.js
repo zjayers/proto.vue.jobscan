@@ -7,17 +7,17 @@ const state = {
     jobTitle: "",
     keywords: [],
     template: "",
-    contactType: ""
+    contactType: "",
 };
 
 // -------- Getters -------- //
 const getters = {
-    getContactName: state => state.contactName,
-    getCompanyName: state => state.companyName,
-    getJobTitle: state => state.jobTitle,
-    getKeywords: state => state.keywords,
-    getTemplate: state => state.template,
-    getContactType: state => state.contactType
+    getContactName: (state) => state.contactName,
+    getCompanyName: (state) => state.companyName,
+    getJobTitle: (state) => state.jobTitle,
+    getKeywords: (state) => state.keywords,
+    getTemplate: (state) => state.template,
+    getContactType: (state) => state.contactType,
 };
 
 // -------- Mutations -------- //
@@ -28,7 +28,7 @@ const mutations = {
     setKeywords: (state, payload) => (state.keywords = payload),
     setTemplate: (state, payload) => (state.template = payload),
     setContactType: (state, payload) => (state.contactType = payload),
-    refreshTemplate: (state, store) => (state.template = parseTemplateContent(store, state.template))
+    refreshTemplate: (state, store) => (state.template = parseTemplateContent(store, state.template)),
 };
 
 // -------- Actions -------- //
@@ -38,17 +38,41 @@ const actions = {
     updateJobTitle: ({ commit }, payload) => commit("setJobTitle", payload),
     updateKeywords: ({ commit }, payload) => commit("setKeywords", payload),
     updateTemplate: ({ commit }, payload) => commit("setTemplate", payload),
-    updateContactType: ({ commit }, payload) => commit("setContactType", payload)
+    updateContactType: ({ commit }, payload) => commit("setContactType", payload),
 };
+
+const error = "#dc3545";
+const content = "#20c997";
 
 function parseTemplateContent(store) {
     const activeTemplate = store.getters.getActiveTemplate.split("-").pop();
     const contactType = store.getters.getContactType;
     let parsedContent = templates[activeTemplate][contactType];
     for (const getter in store.getters) {
-        const key = getter.replace("get", "");
-        const parsableKey = `<$-${key.toUpperCase()}-$>`;
-        parsedContent = parsedContent.replace(parsableKey, store.getters[getter]);
+        const key = getter.replace("get", "").toUpperCase();
+        const parsableKey = `<%-${key}-%>`;
+        const parsablePlural = `<%-${key}_COUNT-%>`;
+        const singularMatcher = new RegExp(parsableKey, "g");
+        const pluralMatcher = new RegExp(parsablePlural, "g");
+        let value = store.getters[getter];
+        let valueCount = Array.isArray(value) ? value.length : 0;
+
+        if (Array.isArray(value)) {
+            value = value.map((val) => val.text);
+            value = value.join(", ");
+        }
+
+        let style = `background-color: ${content} !important; border-radius: 4px; font-size: 0.75rem; padding: 2px; color: white;`;
+
+        if (!value || !value.length) {
+            value = key;
+            style = style.replace(content, error);
+        }
+
+        value = `<span style="${style}" class="jx-parsable">${value}</span>`;
+
+        parsedContent = parsedContent.replace(singularMatcher, value);
+        parsedContent = parsedContent.replace(pluralMatcher, valueCount);
     }
 
     return parsedContent ? parsedContent : "";
