@@ -102,6 +102,7 @@ export default {
     background-color: $white;
     border: 2px solid $primary;
     margin-left: -2px;
+    font-size: 12px;
 }
 
 .jx-active-btn__templates,

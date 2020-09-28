@@ -117,27 +117,32 @@ export default {
 
 .jx-text-area {
     height: 100% !important;
-    word-wrap: normal;
+    word-wrap: break-word;
     overflow-y: scroll;
     line-height: 1.6;
 }
 
 #jx-html-area {
     white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 12px;
+    word-break: normal;
+    padding-top: 16px;
 }
 
 .jx-label {
     transform: translateY(50%);
     transition: all 0.1s ease-in-out;
     position: absolute;
-    top: 4%;
-    left: 1em;
+    top: 2px;
+    left: 16px;
     background: none;
     color: $gray-600;
     font-weight: normal;
     cursor: text;
     pointer-events: none;
     text-transform: capitalize;
+    line-height: 1.2;
 }
 
 
@@ -147,17 +152,17 @@ export default {
     box-sizing: border-box;
     background-color: white !important;
     border: 1px solid $gray-500;
-    font-size: 1em;
+    font-size: 16px;
     margin-bottom: 0.75em;
     padding: 0.6em 0.5em;
     width: 100%;
     margin-top: 5px;
     box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0), inset 0 0 0 100px $white;
-    height: 2.5rem;
+    height: 40px;
 
     &:focus {
-        border-color: $primary;
-        outline-color: $primary;
+        border-color: $primary !important;
+        outline-color: $primary !important;
     }
 }
 
@@ -167,9 +172,9 @@ export default {
 
 .jx-input:focus ~ .jx-label,
 .jx-input.has-content ~ .jx-label {
-    top: -1rem;
-    font-size: 0.8em;
-    padding: 0 0.3em;
+    top: -14px;
+    font-size: 14px;
+    padding: 0 2px;
     background: $gray-100;
     border-radius: 100px;
 }
@@ -181,10 +186,11 @@ export default {
 
 .jx-text-area:focus ~ .jx-label,
 .jx-text-area.has-content ~ .jx-label {
-    top: -1rem;
-    font-size: 0.8em;
-    padding: 0 0.3em;
+    top: -14px;
+    font-size: 14px;
+    padding: 0 2px;
     background: $gray-100;
     border-radius: 100px;
 }
 </style>
+

@@ -62,7 +62,7 @@ function parseTemplateContent(store) {
             value = value.join(", ");
         }
 
-        let style = `background-color: ${content} !important; border-radius: 4px; font-size: 0.75rem; padding: 2px; color: white;`;
+        let style = `background-color: ${content} !important; border-radius: 4px; font-size: 12px; padding: 1px; color: white;`;
 
         if (!value || !value.length) {
             value = key;

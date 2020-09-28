@@ -25,13 +25,13 @@ export default {
         },
         handleItemClick() {
             window.location = this.site.httpAddress;
-        },
+        }
     },
     computed: {
         siteName() {
             return JSON.stringify(this.site);
-        },
-    },
+        }
+    }
 };
 </script>
 
@@ -73,6 +73,7 @@ export default {
             height: 80%;
             width: 80%;
             border-radius: 100px;
+            filter: grayscale(1) brightness(0.4);
         }
     }
 
@@ -84,6 +85,10 @@ export default {
         align-items: center;
         justify-content: center;
         margin: 0;
+
+        & p {
+            margin: 0;
+        }
     }
 
     & .jx-jb-close {
@@ -126,7 +131,6 @@ export default {
     position: relative;
     display: inline-block;
     box-sizing: border-box;
-    border: none;
     border-radius: 4px;
     padding: 0 16px;
     min-width: 64px;
@@ -210,7 +214,7 @@ export default {
 /* Active */
 .pure-material-button-contained:active {
     box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14),
-        0 3px 14px 2px rgba(0, 0, 0, 0.12);
+    0 3px 14px 2px rgba(0, 0, 0, 0.12);
 }
 
 .pure-material-button-contained:active::after {

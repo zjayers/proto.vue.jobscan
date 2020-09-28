@@ -11,7 +11,7 @@
 
         <div>
             <transition name="collapse">
-                <div v-if="getDockVisible" class="jx-button-container">
+                <div v-show="getDockVisible" class="jx-button-container">
                     <jx-dock-button
                         :sidebar-id="SIDEBAR_PERSONAL"
                         icon="person-badge"
@@ -59,10 +59,10 @@ export default {
         SIDEBAR_JOB_BOARD,
         SIDEBAR_TEMPLATES,
         SIDEBAR_METRICS,
-        SIDEBAR_PERSONAL,
+        SIDEBAR_PERSONAL
     }),
     computed: {
-        ...mapGetters(["getAccordionIconVisible", "getAccordionToolTipText", "getDockVisible"]),
+        ...mapGetters(["getAccordionIconVisible", "getAccordionToolTipText", "getDockVisible"])
     },
     methods: {
         ...mapActions(["toggleAccordionIconVisible", "updateAccordionToolTipText", "toggleDockVisible"]),
@@ -81,8 +81,8 @@ export default {
                 this.$refs.accordionButton.classList.add("jx-wrapper");
                 this.updateAccordionToolTipText(this.getDockVisible ? "Hide" : "Show");
             }, 500);
-        },
-    },
+        }
+    }
 };
 </script>
 

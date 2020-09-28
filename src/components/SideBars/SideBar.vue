@@ -3,7 +3,7 @@
         <div v-show="getSideBarVisible" class="jx-sidebar-container">
             <transition name="collapse">
                 <div v-if="getSideBarVisible" class="jx-sidebar-content">
-                    <component class="jx-fixed-container" :is="sideBarContent"></component>
+                    <component :is="sideBarContent" class="jx-fixed-container"></component>
                 </div>
             </transition>
             <div class="jx-sidebar-overlay" @click="handleSideBarClose"></div>
@@ -26,7 +26,7 @@ export default {
         SIDEBAR_JOB_BOARD,
         SIDEBAR_METRICS,
         SIDEBAR_PERSONAL,
-        SIDEBAR_TEMPLATES,
+        SIDEBAR_TEMPLATES
     }),
     props: ["id", "title"],
     computed: {
@@ -44,15 +44,15 @@ export default {
                 default:
                     return "";
             }
-        },
+        }
     },
     methods: {
         ...mapActions(["toggleSideBarVisible", "updateActiveButton"]),
         handleSideBarClose() {
             this.toggleSideBarVisible();
             this.updateActiveButton(null);
-        },
-    },
+        }
+    }
 };
 </script>
 
@@ -77,13 +77,12 @@ $sidebar-interior: $sidebar-base - 5 + px;
 
 .jx-sidebar-content {
     width: $sidebar-width;
-    height: 100vh;
     background: $gray-100;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
     overflow-y: scroll;
     z-index: 1001 !important;
-    padding: 10px 10px 10px 15px;
-    margin-bottom: 60px;
+    padding: 10px 10px 60px 15px;
+    box-sizing: content-box;
 }
 
 .jx-sidebar-overlay {

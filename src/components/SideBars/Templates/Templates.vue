@@ -108,6 +108,7 @@ export default {
     flex-direction: column;
     position: relative;
     margin-bottom: 20px;
+    box-sizing: border-box !important;
 
     & hr {
         width: 100%;
@@ -151,10 +152,10 @@ export default {
 .jx-copy-button {
     display: inline-block;
     margin-bottom: 0;
-    height: 24px;
+    height: auto;
     text-align: center;
+    font-size: 12px;
     white-space: nowrap;
-    vertical-align: middle;
     touch-action: manipulation;
     cursor: pointer;
     user-select: none;
@@ -163,6 +164,7 @@ export default {
     border: 2px solid $primary;
     margin-left: -2px;
     border-radius: 4px;
+    padding: 5px;
 
     &:hover {
         outline: none;

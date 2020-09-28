@@ -3,23 +3,23 @@ const state = {
     dockVisible: true,
     accordionIconVisible: false,
     accordionToolTipText: "Hide",
-    sideBarVisible: true,
-    sideBarId: "jx-sidebar-templates",
+    sideBarVisible: false,
+    sideBarId: "",
     activeButton: null,
     templateId: "",
-    activeTemplate: "jx-template-Cover"
+    activeTemplate: "jx-template-Cover",
 };
 
 // -------- Getters -------- //
 const getters = {
-    getDockVisible: state => state.dockVisible,
-    getAccordionIconVisible: state => state.accordionIconVisible,
-    getAccordionToolTipText: state => state.accordionToolTipText,
-    getSideBarVisible: state => state.sideBarVisible,
-    getSideBarId: state => state.sideBarId,
-    getActiveButton: state => state.activeButton,
-    getTemplateId: state => state.templateId,
-    getActiveTemplate: state => state.activeTemplate
+    getDockVisible: (state) => state.dockVisible,
+    getAccordionIconVisible: (state) => state.accordionIconVisible,
+    getAccordionToolTipText: (state) => state.accordionToolTipText,
+    getSideBarVisible: (state) => state.sideBarVisible,
+    getSideBarId: (state) => state.sideBarId,
+    getActiveButton: (state) => state.activeButton,
+    getTemplateId: (state) => state.templateId,
+    getActiveTemplate: (state) => state.activeTemplate,
 };
 // -------- Mutations -------- //
 const mutations = {
@@ -30,7 +30,7 @@ const mutations = {
     setSideBarId: (state, payload) => (state.sideBarId = payload),
     setActiveButton: (state, payload) => (state.activeButton = payload),
     setTemplateId: (state, payload) => (state.templateId = payload),
-    setActiveTemplate: (state, payload) => (state.activeTemplate = payload)
+    setActiveTemplate: (state, payload) => (state.activeTemplate = payload),
 };
 
 // -------- Actions -------- //
@@ -48,7 +48,7 @@ const actions = {
     updateTemplateVisible: ({ commit }, payload) => commit("setTemplateVisible", payload),
     toggleTemplateVisible: ({ commit }) => commit("setTemplateVisible", !state.sideBarVisible),
     updateActiveTemplate: ({ commit }, payload) => commit("setActiveTemplate", payload),
-    updateTemplateId: ({ commit }, payload) => commit("setTemplateId", payload)
+    updateTemplateId: ({ commit }, payload) => commit("setTemplateId", payload),
 };
 
 export default { state, getters, mutations, actions };

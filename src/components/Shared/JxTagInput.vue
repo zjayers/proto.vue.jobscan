@@ -2,7 +2,6 @@
     <vue-tags-input
         v-model="tag"
         :allow-edit-tags="true"
-        :autocomplete-items="filteredItems"
         :avoid-adding-duplicates="true"
         :placeholder="placeholder || 'Add New Tag'"
         :tags="inputState"
@@ -12,14 +11,12 @@
 
 <script>
 import VueTagsInput from "@johmun/vue-tags-input";
-import { autoCompleteDataMixin } from "../../components/mixins/AutoCompleteData.js";
 
 export default {
     name: "JxTagInput",
     components: {
         VueTagsInput
     },
-    mixins: [autoCompleteDataMixin],
     data() {
         return {
             tag: ""
@@ -48,11 +45,6 @@ export default {
                 this.$store.commit(`set${mutationContext}`, value);
             }
 
-        },
-        filteredItems() {
-            return this.$data.autocompleteItems.filter(i => {
-                return i.text.toLowerCase().indexOf(this.tag.toLowerCase()) !== -1;
-            });
         }
     }
 };
@@ -74,11 +66,12 @@ export default {
     min-height: 2.5rem;
 }
 
+
 .vue-tags-input.ti-focus .ti-input {
     box-shadow: 0 0 0 1px $primary;
     border-radius: 4px;
-    font-size: 1em;
     border-color: $primary;
+    font-size: 16px;
 
 }
 
