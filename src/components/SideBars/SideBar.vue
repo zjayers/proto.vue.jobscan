@@ -2,7 +2,7 @@
     <transition name="fade">
         <div v-show="getSideBarVisible" class="jx-sidebar-container">
             <transition name="collapse">
-                <div v-if="getSideBarVisible" class="jx-sidebar-content">
+                <div v-show="getSideBarVisible" class="jx-sidebar-content">
                     <component :is="sideBarContent" class="jx-fixed-container"></component>
                 </div>
             </transition>
@@ -47,7 +47,7 @@ export default {
         }
     },
     methods: {
-        ...mapActions(["toggleSideBarVisible", "updateActiveButton"]),
+        ...mapActions(["updateSideBarVisible", "updateActiveButton", "toggleSideBarVisible"]),
         handleSideBarClose() {
             this.toggleSideBarVisible();
             this.updateActiveButton(null);

@@ -10,7 +10,7 @@
                 v-if="getActiveTemplate === 'jx-template-Outreach' || getActiveTemplate === 'jx-template-Response'"
                 class="form-group"
             >
-                <select @change="handleSelectChange">
+                <select class="jx-select-button" @change="handleSelectChange">
                     <option v-for="key in Object.keys(selectOptions)" :key="key">{{ key }}</option>
                 </select>
                 <i class="bar"></i>
@@ -139,6 +139,7 @@ export default {
     border-bottom-right-radius: 4px;
     border: 1px solid $gray-500;
     padding: 5px;
+    height: 42px;
     width: 100%;
     box-sizing: border-box;
 
@@ -146,6 +147,10 @@ export default {
         background-color: $gray-200;
         border: 1px solid $gray-500;
         border-radius: 4px;
+        height: 32px;
+        font-size: 12px;
+        padding: 3px;
+        text-align: center;
     }
 }
 

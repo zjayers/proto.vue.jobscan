@@ -1,27 +1,20 @@
 module.exports = {
-  pages: {
-    popup: {
-      template: "public/browser-extension.html",
-      entry: "./src/popup/main.js",
-      title: "Popup",
-    },
-  },
-  pluginOptions: {
-    browserExtension: {
-      componentOptions: {
-        contentScripts: {
-          entries: {
-            main: ["src/overlay/main.js"],
-          },
+    pages: {
+        popup: {
+            template: "public/browser-extension.html",
+            entry: "./src/popup/main.js",
+            title: "Popup",
         },
-      },
     },
-  },
-  css: {
-    loaderOptions: {
-      sass: {
-        prependData: `@import "@/scss/_theme.scss";`,
-      },
+    pluginOptions: {
+        browserExtension: {
+            componentOptions: {
+                contentScripts: {
+                    entries: {
+                        main: ["src/overlay/main.js"],
+                    },
+                },
+            },
+        },
     },
-  },
 };

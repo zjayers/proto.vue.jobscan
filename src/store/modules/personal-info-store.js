@@ -1,13 +1,13 @@
 // -------- State -------- //
 const state = {
-    firstName: "Zach",
-    lastName: "Ayers",
-    email: "z.ayers@icloud.com",
-    phoneNumber: "(817) 395-8717",
-    githubUsername: "zjayers",
-    website: "https://zachayers.io",
-    currentJobTitle: "Software Engineer",
-    yearsOfExperience: "5",
+    firstName: "",
+    lastName: "",
+    email: "",
+    phoneNumber: "",
+    githubUsername: "",
+    website: "",
+    currentJobTitle: "",
+    yearsOfExperience: "",
     personalSummary: "",
     platforms: [
         { text: "Windows", tiClasses: ["ti-valid"] },

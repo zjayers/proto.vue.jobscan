@@ -5,7 +5,7 @@
         :avoid-adding-duplicates="true"
         :placeholder="placeholder || 'Add New Tag'"
         :tags="inputState"
-        @tags-changed="newTags => inputState = newTags"
+        @tags-changed="handleTagsChanged"
     />
 </template>
 
@@ -30,6 +30,12 @@ export default {
         placeholder: {
             type: String,
             required: false
+        }
+    },
+    methods: {
+        handleTagsChanged(newTags) {
+            this.inputState = newTags;
+            this.$store.commit("refreshTemplate", this.$store);
         }
     },
     computed: {
@@ -106,6 +112,10 @@ export default {
 .vue-tags-input .ti-duplicate span,
 .vue-tags-input .ti-new-tag-input.ti-duplicate {
     text-decoration: line-through;
+}
+
+.ti-input ul li input {
+    box-shadow: none !important;
 }
 
 .vue-tags-input .ti-tag:after {

@@ -2,7 +2,8 @@
     <div class="jx-button-dock">
         <div
             ref="accordionButton"
-            class="jx-collapse-button jx-wrapper"
+            :class="getDockVisible ? 'jx-wrapper' : 'jx-collapsed'"
+            class="jx-collapse-button"
             @click="toggleButtonContainerVisibility"
         >
             <div class="jx-tooltip">{{ getAccordionToolTipText }}</div>
@@ -11,7 +12,7 @@
 
         <div>
             <transition name="collapse">
-                <div v-show="getDockVisible" class="jx-button-container">
+                <div v-if="getDockVisible" class="jx-button-container">
                     <jx-dock-button
                         :sidebar-id="SIDEBAR_PERSONAL"
                         icon="person-badge"

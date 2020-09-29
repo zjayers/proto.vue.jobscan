@@ -12,7 +12,7 @@
                 v-html="inputState"
             />
 
-            <template v-else-if="isHtmlArea">
+            <template v-else-if="isHtmlArea" class="jx-html-wrapper">
                 <pre
                     id="jx-html-area"
                     :class="hasContent"
@@ -113,6 +113,10 @@ export default {
     max-width: 500px;
     margin: 0 auto;
     height: 100%;
+
+    & label {
+        margin: 0;
+    }
 }
 
 .jx-text-area {
@@ -125,9 +129,13 @@ export default {
 #jx-html-area {
     white-space: pre-wrap;
     word-wrap: break-word;
-    font-size: 12px;
+    font-size: 12px !important;
     word-break: normal;
     padding-top: 16px;
+}
+
+.jx-html-wrapper p {
+    font-size: 12px !important;
 }
 
 .jx-label {
